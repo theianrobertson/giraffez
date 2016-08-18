@@ -84,7 +84,7 @@
                 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="intro.html">Introduction</a></li>
 <li class="toctree-l1"><a class="reference internal" href="command-line.html">Command Line</a></li>
-<li class="toctree-l1 current"><a class="current reference internal" href="">Python API</a><ul>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Python API</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#setting-up-logging">Setting up logging</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#giraffez-modules">giraffez modules</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#module-giraffez.cmd">giraffez.cmd module</a></li>
@@ -132,7 +132,7 @@
         <div class="rst-content">
           
 
-
+ 
 
 
 
@@ -1333,53 +1333,53 @@ original table schema without losing information.</p>
 <code class="descname">serialize</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#giraffez.types.Columns.serialize" title="Permalink to this definition">¶</a></dt>
 <dd><p>Serializes the columns into the giraffez archive header
 binary format:</p>
-<div class="highlight-python"><div class="highlight"><pre><span></span>0      1      2      
-+------+------+------+------+------+------+------+------+
-| Header      | Header Data                             |
-| Length      |                                         |
-+------+------+------+------+------+------+------+------+
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="mi">0</span>      <span class="mi">1</span>      <span class="mi">2</span>      
+<span class="o">+------+------+------+------+------+------+------+------+</span>
+<span class="o">|</span> <span class="n">Header</span>      <span class="o">|</span> <span class="n">Header</span> <span class="n">Data</span>                             <span class="o">|</span>
+<span class="o">|</span> <span class="n">Length</span>      <span class="o">|</span>                                         <span class="o">|</span>
+<span class="o">+------+------+------+------+------+------+------+------+</span>
 
-           giraffez Archive Header Format
+           <span class="n">giraffez</span> <span class="n">Archive</span> <span class="n">Header</span> <span class="n">Format</span>
 
-                       Fig. 1
+                       <span class="n">Fig</span><span class="o">.</span> <span class="mi">1</span>
 
-Header Length: 2 bytes
-    Full length of archive header 
+<span class="n">Header</span> <span class="n">Length</span><span class="p">:</span> <span class="mi">2</span> <span class="nb">bytes</span>
+    <span class="n">Full</span> <span class="n">length</span> <span class="n">of</span> <span class="n">archive</span> <span class="n">header</span> 
 
-Header Data: variable
-    Binary data representing N column(s) using the format
-    specified in Fig. 2
+<span class="n">Header</span> <span class="n">Data</span><span class="p">:</span> <span class="n">variable</span>
+    <span class="n">Binary</span> <span class="n">data</span> <span class="n">representing</span> <span class="n">N</span> <span class="n">column</span><span class="p">(</span><span class="n">s</span><span class="p">)</span> <span class="n">using</span> <span class="n">the</span> <span class="nb">format</span>
+    <span class="n">specified</span> <span class="ow">in</span> <span class="n">Fig</span><span class="o">.</span> <span class="mi">2</span>
 
 
-0      1      2      3      4      5      6      7      8
-+------+------+------+------+------+------+------+------+
-| Type        | Length      | Precision   | Scale       | 
-+------+------+------+------+------+------+------+------+
-| Name Length | Name                                    |
-+------+------+------+------+------+------+------+------+
+<span class="mi">0</span>      <span class="mi">1</span>      <span class="mi">2</span>      <span class="mi">3</span>      <span class="mi">4</span>      <span class="mi">5</span>      <span class="mi">6</span>      <span class="mi">7</span>      <span class="mi">8</span>
+<span class="o">+------+------+------+------+------+------+------+------+</span>
+<span class="o">|</span> <span class="n">Type</span>        <span class="o">|</span> <span class="n">Length</span>      <span class="o">|</span> <span class="n">Precision</span>   <span class="o">|</span> <span class="n">Scale</span>       <span class="o">|</span> 
+<span class="o">+------+------+------+------+------+------+------+------+</span>
+<span class="o">|</span> <span class="n">Name</span> <span class="n">Length</span> <span class="o">|</span> <span class="n">Name</span>                                    <span class="o">|</span>
+<span class="o">+------+------+------+------+------+------+------+------+</span>
 
-               Binary Column Format
+               <span class="n">Binary</span> <span class="n">Column</span> <span class="n">Format</span>
 
-                       Fig. 2
+                       <span class="n">Fig</span><span class="o">.</span> <span class="mi">2</span>
 
-Type: 2 bytes
-    Numerical representation of column type defined by
-    Teradata&#39;s CLIv2
+<span class="n">Type</span><span class="p">:</span> <span class="mi">2</span> <span class="nb">bytes</span>
+    <span class="n">Numerical</span> <span class="n">representation</span> <span class="n">of</span> <span class="n">column</span> <span class="nb">type</span> <span class="n">defined</span> <span class="n">by</span>
+    <span class="n">Teradata</span><span class="s1">&#39;s CLIv2</span>
 
-Length: 2 bytes
-    Column length
+<span class="n">Length</span><span class="p">:</span> <span class="mi">2</span> <span class="nb">bytes</span>
+    <span class="n">Column</span> <span class="n">length</span>
 
-Scale: 2 bytes
-    Column scale
+<span class="n">Scale</span><span class="p">:</span> <span class="mi">2</span> <span class="nb">bytes</span>
+    <span class="n">Column</span> <span class="n">scale</span>
 
-Precision: 2 bytes
-    Column precision
+<span class="n">Precision</span><span class="p">:</span> <span class="mi">2</span> <span class="nb">bytes</span>
+    <span class="n">Column</span> <span class="n">precision</span>
 
-Name Length: 2 bytes
-    Length used for reading variable column name
+<span class="n">Name</span> <span class="n">Length</span><span class="p">:</span> <span class="mi">2</span> <span class="nb">bytes</span>
+    <span class="n">Length</span> <span class="n">used</span> <span class="k">for</span> <span class="n">reading</span> <span class="n">variable</span> <span class="n">column</span> <span class="n">name</span>
 
-Name: variable
-    Name of column
+<span class="n">Name</span><span class="p">:</span> <span class="n">variable</span>
+    <span class="n">Name</span> <span class="n">of</span> <span class="n">column</span>
 </pre></div>
 </div>
 <table class="docutils field-list" frame="void" rules="none">
