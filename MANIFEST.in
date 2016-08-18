@@ -1,2 +1,0 @@
-recursive-include giraffez *.h
-recursive-include src *.h
