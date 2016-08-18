@@ -1,0 +1,475 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Command Line &mdash; giraffez 1.0.0 documentation</title>
+  
+
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  
+
+  
+
+  
+    <link rel="top" title="giraffez 1.0.0 documentation" href="index.html"/>
+        <link rel="next" title="Python API" href="api.html"/>
+        <link rel="prev" title="Introduction" href="intro.html"/> 
+
+  
+  <script src="_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="index.html" class="icon icon-home"> giraffez
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                1.0.0
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+                <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="intro.html">Introduction</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="">Command Line</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#commands">Commands</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#config">config</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#cmd">cmd</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#export">export</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#fmt">fmt</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#load">load</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#mload">mload</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#run">run</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#shell">shell</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#secret">secret</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#archiving">Archiving</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="api.html">Python API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="FAQ.html">FAQ</a></li>
+<li class="toctree-l1"><a class="reference external" href="http://github.com/capitalone/giraffez">GitHub</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="index.html">giraffez</a>
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="index.html">Docs</a> &raquo;</li>
+      
+    <li>Command Line</li>
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            <a href="_sources/command-line.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="command-line">
+<h1><a class="toc-backref" href="#id2">Command Line</a><a class="headerlink" href="#command-line" title="Permalink to this headline">¶</a></h1>
+<div class="contents topic" id="contents">
+<p class="topic-title first">Contents</p>
+<ul class="simple">
+<li><a class="reference internal" href="#command-line" id="id2">Command Line</a><ul>
+<li><a class="reference internal" href="#commands" id="id3">Commands</a><ul>
+<li><a class="reference internal" href="#config" id="id4">config</a></li>
+<li><a class="reference internal" href="#cmd" id="id5">cmd</a></li>
+<li><a class="reference internal" href="#export" id="id6">export</a></li>
+<li><a class="reference internal" href="#fmt" id="id7">fmt</a></li>
+<li><a class="reference internal" href="#load" id="id8">load</a></li>
+<li><a class="reference internal" href="#mload" id="id9">mload</a></li>
+<li><a class="reference internal" href="#run" id="id10">run</a></li>
+<li><a class="reference internal" href="#shell" id="id11">shell</a></li>
+<li><a class="reference internal" href="#secret" id="id12">secret</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#archiving" id="id13">Archiving</a></li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="section" id="commands">
+<h2><a class="toc-backref" href="#id3">Commands</a><a class="headerlink" href="#commands" title="Permalink to this headline">¶</a></h2>
+<p>giraffez has several modules that can be accessed in Python or via the command-line script <code class="docutils literal"><span class="pre">giraffez</span></code>. These modules can be easily accessed by running the <code class="docutils literal"><span class="pre">giraffez</span></code> command and following the usage help. Each module will print help relevant to the module being used.</p>
+<p>There are certain shared options that any of the following commands will receive:</p>
+<ul>
+<li><dl class="first docutils">
+<dt><code class="docutils literal"><span class="pre">-v</span></code> or <code class="docutils literal"><span class="pre">--verbose</span></code> (<code class="docutils literal"><span class="pre">-vv</span></code> for DEBUG level output)</dt>
+<dd><p class="first last">sets the log output level to &#8220;verbose&#8221;, for more informative feedback while executing commands</p>
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt><code class="docutils literal"><span class="pre">--host</span> <span class="pre">&lt;host&gt;</span></code></dt>
+<dd><p class="first last">specifies a host to use. If specifed, username and password should be passed similarly as below</p>
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt><code class="docutils literal"><span class="pre">--username</span> <span class="pre">&lt;username&gt;</span></code></dt>
+<dd><p class="first last">overrides the default username from the user&#8217;s configuration file, to be used with <code class="docutils literal"><span class="pre">--host</span> <span class="pre">...</span></code></p>
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt><code class="docutils literal"><span class="pre">--password</span> <span class="pre">&lt;password&gt;</span></code></dt>
+<dd><p class="first last">overrides the default username from the user&#8217;s configuration file, to be used with <code class="docutils literal"><span class="pre">--host</span> <span class="pre">...</span></code></p>
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt><code class="docutils literal"><span class="pre">-D</span> <span class="pre">&lt;connection</span> <span class="pre">name&gt;</span></code> or <code class="docutils literal"><span class="pre">--dsn</span> <span class="pre">&lt;connection</span> <span class="pre">name&gt;</span></code></dt>
+<dd><p class="first last">specifies a connection from the <code class="docutils literal"><span class="pre">.girafferc</span></code> file to be used in place of the one designated <code class="docutils literal"><span class="pre">default</span></code></p>
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt><code class="docutils literal"><span class="pre">-c</span> <span class="pre">&lt;config</span> <span class="pre">file&gt;</span></code> or <code class="docutils literal"><span class="pre">--conf</span> <span class="pre">&lt;config</span> <span class="pre">file&gt;</span></code></dt>
+<dd><p class="first last">specifies the location of the configuration file to read connection information from (uses <code class="docutils literal"><span class="pre">~/.girafferc</span></code> if this option is not specified)</p>
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt><code class="docutils literal"><span class="pre">-k</span> <span class="pre">&lt;key</span> <span class="pre">file&gt;</span></code> or <code class="docutils literal"><span class="pre">--key</span> <span class="pre">&lt;key</span> <span class="pre">file&gt;</span></code></dt>
+<dd><p class="first last">specifies the location of the encryption key file to decrypt configuration information from (uses <code class="docutils literal"><span class="pre">~/.giraffepg</span></code> if this option is not specified)</p>
+</dd>
+</dl>
+</li>
+</ul>
+<p><strong>To see a list of available commands, run</strong> <code class="docutils literal"><span class="pre">giraffez</span> <span class="pre">--help</span></code>. <strong>To view options not mentioned below for a specific command, run</strong> <code class="docutils literal"><span class="pre">giraffez</span> <span class="pre">&lt;command&gt;</span> <span class="pre">--help</span></code>.</p>
+<div class="section" id="config">
+<span id="config-command"></span><h3><a class="toc-backref" href="#id4">config</a><a class="headerlink" href="#config" title="Permalink to this headline">¶</a></h3>
+<p>The config module is used to view and edit the YAML configuration file that giraffez uses (aka <code class="docutils literal"><span class="pre">.girafferc</span></code>). If this is the first time using giraffez the best way to create a new configuration file is:</p>
+<div class="highlight-python"><div class="highlight"><pre><span></span>giraffez config --init
+</pre></div>
+</div>
+<p>By default, this creates a new configuration file in <code class="docutils literal"><span class="pre">$HOME/.girafferc</span></code> with default values. Since the <code class="docutils literal"><span class="pre">.girafferc</span></code> file will contain sensitive information like username/password, the file permissions are set to 0600 to keep others from having access to read this file. To now view your <code class="docutils literal"><span class="pre">.girafferc</span></code>:</p>
+<div class="highlight-python"><div class="highlight"><pre><span></span>giraffez config --list
+</pre></div>
+</div>
+<p>This should look something like this:</p>
+<div class="highlight-yaml"><div class="highlight"><pre><span></span><span class="l l-Scalar l-Scalar-Plain">connections</span><span class="p p-Indicator">:</span>
+  <span class="l l-Scalar l-Scalar-Plain">default</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">db1</span>
+  <span class="l l-Scalar l-Scalar-Plain">db1</span><span class="p p-Indicator">:</span>
+    <span class="l l-Scalar l-Scalar-Plain">host</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">null</span>
+    <span class="l l-Scalar l-Scalar-Plain">password</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">null</span>
+    <span class="l l-Scalar l-Scalar-Plain">username</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">null</span>
+<span class="l l-Scalar l-Scalar-Plain">verbosity</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">0</span>
+</pre></div>
+</div>
+<p>giraffez uses this configuration file much like how unixodbc uses <code class="docutils literal"><span class="pre">odbc.ini</span></code> to define connections. To use the default db1 connection you must now set your username/password:</p>
+<div class="highlight-python"><div class="highlight"><pre><span></span>giraffez config --set connections.db1.host &lt;hostname&gt;
+giraffez config --set connections.db1.username &lt;username&gt;
+giraffez config --set connections.db1.password &lt;password&gt;
+</pre></div>
+</div>
+<p>The YAML configuration file is lazily initiated so adding new connections is as simple as just setting the values:</p>
+<div class="highlight-python"><div class="highlight"><pre><span></span>giraffez config --set connections.mydb1.host db1.local
+giraffez config --set connections.mydb1.username abc123
+giraffez config --set connections.mydb1.password password123
+</pre></div>
+</div>
+<p>The name of the connection is what is used when using the cmd, export, or load modules. The default is used if no DSN is passed with the <code class="docutils literal"><span class="pre">giraffez</span> <span class="pre">&lt;subcommand&gt;</span> <span class="pre">-D</span> <span class="pre">&lt;DSN&gt;</span></code> command. If you want to change the default connection:</p>
+<div class="highlight-python"><div class="highlight"><pre><span></span>giraffez config --set connections.default mydb1
+</pre></div>
+</div>
+</div>
+<div class="section" id="cmd">
+<span id="cmd-command"></span><h3><a class="toc-backref" href="#id5">cmd</a><a class="headerlink" href="#cmd" title="Permalink to this headline">¶</a></h3>
+<p>The <code class="docutils literal"><span class="pre">cmd</span></code> module is used to issue Teradata commands via the CLIv2. Originally it was needed to facilitate the load feature, but there was no reason not to make it available as a module. Using the <code class="docutils literal"><span class="pre">cmd</span></code> module is simple:</p>
+<div class="highlight-python"><div class="highlight"><pre><span></span>giraffez cmd &quot;select * from dbc.dbcinfo&quot;
+</pre></div>
+</div>
+<p>The option <code class="docutils literal"><span class="pre">-t</span></code> (or <code class="docutils literal"><span class="pre">--table-output</span></code>) may be specified to format the result of the executed statement(s) into a table (for readability).</p>
+<p>The <code class="docutils literal"><span class="pre">cmd</span></code> module is not meant to be used for high-output queries &#8211; in those cases, the <code class="docutils literal"><span class="pre">export</span></code> module should be used.</p>
+</div>
+<div class="section" id="export">
+<span id="export-command"></span><h3><a class="toc-backref" href="#id6">export</a><a class="headerlink" href="#export" title="Permalink to this headline">¶</a></h3>
+<p>The <code class="docutils literal"><span class="pre">export</span></code> module provides easy access to the Teradata PT Export driver. Teradata&#8217;s export utility, fastexp, makes use of this but has many issues making it unsuitable for use. In addition to being unintuitive and difficult to setup, debug, and log, it has no capacity or function to actually decode the Teradata binary format it generates (leading to the use of &#8220;hack&#8221; solutions, such as casting all columns in a query to VARCHAR and concatenating them).</p>
+<p>giraffez utilizes the speed of fastexport (fastexp) with two additional goals: providing an easy to use interface, and decoding the packed binary row data, taking great care to preserve all data type information.</p>
+<p>A simple query that writes the contents of an entire table to STDOUT looks like this:</p>
+<div class="highlight-python"><div class="highlight"><pre><span></span>giraffez export database.table_name
+</pre></div>
+</div>
+<p>This is equivalent to writing (the argument to the <code class="docutils literal"><span class="pre">export</span></code> command can be either a table name, or a SQL query):</p>
+<div class="highlight-python"><div class="highlight"><pre><span></span>giraffez export &quot;select * from database.table_name&quot;
+</pre></div>
+</div>
+<p>Further options can be specified to format the output of the command or modify its execution.</p>
+<p>For example, if you want to write the contents of <code class="docutils literal"><span class="pre">database.table_name</span></code> to a tab-delimited file, this could be accomplished with:</p>
+<div class="highlight-python"><div class="highlight"><pre><span></span>giraffez export database.table_name output_file.txt -d &#39;\t&#39;
+</pre></div>
+</div>
+<p>Where <code class="docutils literal"><span class="pre">output_file.txt</span></code> specifies the output location (a filename), and <code class="docutils literal"><span class="pre">-d</span></code> specifies the delimiter. Note that because tab is a special character it has been written <em>escaped</em> as t and quoted so that it is passed literally. If name of the output file is omitted, the result of the command will be written to standard out (from which it may be redirected, if desired.)</p>
+</div>
+<div class="section" id="fmt">
+<span id="fmt-command"></span><h3><a class="toc-backref" href="#id7">fmt</a><a class="headerlink" href="#fmt" title="Permalink to this headline">¶</a></h3>
+<p>The <code class="docutils literal"><span class="pre">fmt</span></code> module provides utilities for reformatting and interacting with data, stored in flatfiles or the Giraffe Archive format (see <a class="reference internal" href="#archiving"><span>Archiving</span></a>).</p>
+<p>Currently, <code class="docutils literal"><span class="pre">fmt</span></code> can be used to read giraffez archive files by decoding their data:</p>
+<div class="highlight-python"><div class="highlight"><pre><span></span>giraffez fmt table_archive.gd
+</pre></div>
+</div>
+<p>This would write the contents of the archive to STDOUT. Using the <code class="docutils literal"><span class="pre">-d</span></code> option you can change the default delimiter &#8216;|&#8217; to output with a tab delimiter:</p>
+<div class="highlight-python"><div class="highlight"><pre><span></span>giraffez fmt -d &#39;| to \t&#39; table_archive.gd &gt; output.txt
+</pre></div>
+</div>
+<p>Or, to change a tab-delimited file to use pipes:</p>
+<div class="highlight-python"><div class="highlight"><pre><span></span>giraffez fmt -d &#39;\t to |&#39; data.txt &gt; output.txt
+</pre></div>
+</div>
+<p>Similarly the <code class="docutils literal"><span class="pre">-n</span></code> (<code class="docutils literal"><span class="pre">--null</span></code>) option can be used to transform null text in a data file. To change from &#8216;None&#8217; to &#8216;NULL&#8217;:</p>
+<div class="highlight-python"><div class="highlight"><pre><span></span>giraffez fmt -n &#39;None to NULL&#39; data.text &gt; output.txt
+</pre></div>
+</div>
+</div>
+<div class="section" id="load">
+<span id="load-command"></span><h3><a class="toc-backref" href="#id8">load</a><a class="headerlink" href="#load" title="Permalink to this headline">¶</a></h3>
+<p>The <code class="docutils literal"><span class="pre">load</span></code> module provides an interface to insert data into an existing Teradata table using the Teradata CLIv2 driver.</p>
+<p>Initiating a load into an existing table can be done like so:</p>
+<div class="highlight-python"><div class="highlight"><pre><span></span>giraffez load source_file.txt database.table_name
+</pre></div>
+</div>
+<p>The <code class="docutils literal"><span class="pre">load</span></code> command necessitates that a header is present in the source file. The delimiter for the rows of the file is inferred from the content of the header, as well as the names and order of the table&#8217;s target columns.</p>
+</div>
+<div class="section" id="mload">
+<span id="mload-command"></span><h3><a class="toc-backref" href="#id9">mload</a><a class="headerlink" href="#mload" title="Permalink to this headline">¶</a></h3>
+<p>The <code class="docutils literal"><span class="pre">mload</span></code> module provides an interface to insert data into an existing Teradata table using the Teradata PT API&#8217;s Update driver (aka mload). It is designed to be as user-friendly as the export module by handling many of the &#8220;nuances&#8221; of mload. Much like the export module, you are not required to make a script file.</p>
+<p>Another important difference between giraffez and mload is that you do not need to define the input or destination schema for the target table. giraffez infers the target columns from the header of the source file you give it.</p>
+<p>Initiating a load into an existing table can be done like so:</p>
+<div class="highlight-python"><div class="highlight"><pre><span></span>giraffez mload source_file.txt database.table_name
+</pre></div>
+</div>
+<p>As with <code class="docutils literal"><span class="pre">load</span></code>, the <code class="docutils literal"><span class="pre">mload</span></code> command uses the data file&#8217;s header to determine the columns used in the destination table.</p>
+<p>During the process of a load, you may be prompted to drop existing work tables for the target table. giraffez will handle the management of these auxiliary tables for you, but by default you will be prompted for a decision before they are dropped. To automatically answer &#8220;yes&#8221; for these questions (and drop the auxilliary tables should they already exist), specify the <code class="docutils literal"><span class="pre">-y</span></code> (or <code class="docutils literal"><span class="pre">--drop-all</span></code>) flag with the command:</p>
+<div class="highlight-python"><div class="highlight"><pre><span></span>giraffez load source_file.txt database.table_name -y
+</pre></div>
+</div>
+<p>The <code class="docutils literal"><span class="pre">mload</span></code> command is also used to <a class="reference internal" href="#archiving"><span>reload archived data</span></a>.</p>
+</div>
+<div class="section" id="run">
+<span id="run-command"></span><h3><a class="toc-backref" href="#id10">run</a><a class="headerlink" href="#run" title="Permalink to this headline">¶</a></h3>
+<p>The run module allows for scripted jobs via YAML formatted files. If you needed to collect statistics after a giraffez load then you could use this script:</p>
+<p><code class="docutils literal"><span class="pre">example_job.yml</span></code>:</p>
+<div class="highlight-yaml"><div class="highlight"><pre><span></span><span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">type</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">load</span>
+  <span class="l l-Scalar l-Scalar-Plain">settings</span><span class="p p-Indicator">:</span>
+    <span class="l l-Scalar l-Scalar-Plain">table</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">database.table_name</span>
+    <span class="l l-Scalar l-Scalar-Plain">input_file</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">source_file.txt</span>
+<span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">type</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">cmd</span>
+  <span class="l l-Scalar l-Scalar-Plain">settings</span><span class="p p-Indicator">:</span>
+    <span class="l l-Scalar l-Scalar-Plain">query</span><span class="p p-Indicator">:</span> <span class="s">&quot;collect</span><span class="nv"> </span><span class="s">statistics</span><span class="nv"> </span><span class="s">on</span><span class="nv"> </span><span class="s">database.table_name</span><span class="nv"> </span><span class="s">column(col1,</span><span class="nv"> </span><span class="s">col2)&quot;</span>
+<span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">type</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">export</span>
+  <span class="l l-Scalar l-Scalar-Plain">settings</span><span class="p p-Indicator">:</span>
+    <span class="l l-Scalar l-Scalar-Plain">query</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">database.table_name</span>
+    <span class="l l-Scalar l-Scalar-Plain">encoding</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">text</span>
+    <span class="l l-Scalar l-Scalar-Plain">output_file</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">output_file.txt</span>
+</pre></div>
+</div>
+<p>Then::</p>
+<div class="highlight-python"><div class="highlight"><pre><span></span>giraffez run example_job.yml
+</pre></div>
+</div>
+<p>For good measure we also exported the table again (because, reasons). The job files makes it easy to add giraffez commands to batch job systems (like pcron).</p>
+</div>
+<div class="section" id="shell">
+<span id="shell-command"></span><h3><a class="toc-backref" href="#id11">shell</a><a class="headerlink" href="#shell" title="Permalink to this headline">¶</a></h3>
+<p>The <code class="docutils literal"><span class="pre">shell</span></code> module provides an interactive shell environment similar to BTEQ, using the Teradata CLIv2 library. It is most useful for testing SQL queries and investigating or interacting with tables &#8211; the <code class="docutils literal"><span class="pre">shell</span></code> module is not meant for large export or load jobs.</p>
+<p>One use of the <code class="docutils literal"><span class="pre">shell</span></code> module is to write and execute several queries, and to interact with the results, all within the same session (retaining volatile tables), much like using the BTEQ prompt, or Teradata SQL Assistant.</p>
+<p>Example usage (including the original shell prompt to distinguish input lines):</p>
+<div class="highlight-python"><div class="highlight"><pre><span></span>$ giraffez shell
+giraffez&gt; help
+giraffez&gt; table on
+giraffez&gt; select * from dbc.dbcinfo
+...
+</pre></div>
+</div>
+<p>Here we are entering the giraffez shell, invoking the builtin &#8220;help&#8221; command, toggling table output &#8220;on&#8221; (can also be done by specifying <code class="docutils literal"><span class="pre">-t</span></code> or <code class="docutils literal"><span class="pre">--table</span></code> with <code class="docutils literal"><span class="pre">giraffez</span> <span class="pre">shell</span></code>), and executing a SQL query.</p>
+</div>
+<div class="section" id="secret">
+<span id="secret-command"></span><h3><a class="toc-backref" href="#id12">secret</a><a class="headerlink" href="#secret" title="Permalink to this headline">¶</a></h3>
+<p>The <code class="docutils literal"><span class="pre">secret</span></code> module is a convenient way to access sensitive data from your <code class="docutils literal"><span class="pre">.girafferc</span></code>, such as passwords or other credentials:</p>
+<div class="highlight-python"><div class="highlight"><pre><span></span>PROXY_USER=&quot;$(giraffez secret sso.username)&quot;
+PROXY_PASS=&quot;$(giraffez secret sso.password)&quot;
+export http_proxy=&#39;http://$PROXY_USER:$PROXY_PASS@proxy.example.com/&#39;
+</pre></div>
+</div>
+<p>When accessing settings from <code class="docutils literal"><span class="pre">giraffez</span> <span class="pre">secret</span></code>, keys will first be checked relative to the root (for example, <code class="docutils literal"><span class="pre">connections.db1.username</span></code>) and then attempted relative to the <code class="docutils literal"><span class="pre">secure</span></code> key &#8211; above, the full path of the returned value is <code class="docutils literal"><span class="pre">secure.sso.username</span></code>.</p>
+<p>Any value set under the <code class="docutils literal"><span class="pre">secure</span></code> root key will be encrypted so that it can be used to protect any kind of sensitive information. While reading from <code class="docutils literal"><span class="pre">secure</span></code> can be accomplished from <code class="docutils literal"><span class="pre">giraffez</span> <span class="pre">secret</span></code>, the values must be set by <code class="docutils literal"><span class="pre">giraffez</span> <span class="pre">config</span></code> like so:</p>
+<div class="highlight-python"><div class="highlight"><pre><span></span>giraffez config --set secure.sso.username abc123
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="archiving">
+<span id="id1"></span><h2><a class="toc-backref" href="#id13">Archiving</a><a class="headerlink" href="#archiving" title="Permalink to this headline">¶</a></h2>
+<p>giraffez can be used to store tables outside of Teradata, for archival purposes or simply in order to save space. In order to optimize the speed of these operations, the size of the archived files, and the retention of original data without alteration, the original Teradata binary encoding of rows is used alongside special binary headers and row indicators which preserve the format and schema of the data.</p>
+<p>To export a table using the archive output format:</p>
+<div class="highlight-python"><div class="highlight"><pre><span></span>giraffez export database.table_name database.table_name.gd --archive
+</pre></div>
+</div>
+<p>This is equivalent to specifying the encoding as &#8216;archive&#8217; (<code class="docutils literal"><span class="pre">-e</span> <span class="pre">archive</span></code>) when exporting. Note that because no decoding of the row data is necessary this process is very fast.</p>
+<p>To further reduce the size of the resulting archive file, the <code class="docutils literal"><span class="pre">-z</span></code> (<code class="docutils literal"><span class="pre">--gzip</span></code>) option can be used:</p>
+<div class="highlight-python"><div class="highlight"><pre><span></span>giraffez export database.table_name database.table_name.gd.gz -az
+</pre></div>
+</div>
+<p>In order to read an archive file as a delimited text file, use giraffez <a class="reference internal" href="#fmt-command"><span>fmt</span></a>:</p>
+<div class="highlight-python"><div class="highlight"><pre><span></span>giraffez fmt database.table_name.gd &gt; database.table_name.txt
+</pre></div>
+</div>
+<p>Loading a file stored in the giraffez archive format is just as easy:</p>
+<div class="highlight-python"><div class="highlight"><pre><span></span>giraffez mload database.table_name.gd database.another_table_name
+</pre></div>
+</div>
+<p>Note that because the giraffez archive format is recognized by the <code class="docutils literal"><span class="pre">mload</span></code> module automatically, it is not necessary to specify the encoding of the input file.</p>
+</div>
+</div>
+
+
+           </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="api.html" class="btn btn-neutral float-right" title="Python API" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="intro.html" class="btn btn-neutral" title="Introduction" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2016, Capital One Services, LLC.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'./',
+            VERSION:'1.0.0',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true
+        };
+    </script>
+      <script type="text/javascript" src="_static/jquery.js"></script>
+      <script type="text/javascript" src="_static/underscore.js"></script>
+      <script type="text/javascript" src="_static/doctools.js"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>

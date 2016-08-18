@@ -1,0 +1,2152 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Python API &mdash; giraffez 1.0.0 documentation</title>
+  
+
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  
+
+  
+
+  
+    <link rel="top" title="giraffez 1.0.0 documentation" href="index.html"/>
+        <link rel="next" title="giraffez FAQ" href="FAQ.html"/>
+        <link rel="prev" title="Command Line" href="command-line.html"/> 
+
+  
+  <script src="_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="index.html" class="icon icon-home"> giraffez
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                1.0.0
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+                <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="intro.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="command-line.html">Command Line</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="">Python API</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#setting-up-logging">Setting up logging</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#giraffez-modules">giraffez modules</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#module-giraffez.cmd">giraffez.cmd module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#module-giraffez.export">giraffez.export module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#module-giraffez.config">giraffez.config module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#module-giraffez.load">giraffez.load module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#module-giraffez.mload">giraffez.mload module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#module-giraffez.types">giraffez.types module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#module-giraffez.encoders">giraffez.encoders module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#module-giraffez.errors">giraffez.errors module</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#api-usage-examples">API Usage Examples</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#export">Export</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#cmd">Cmd</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#load">Load</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#config">Config</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#secret">Secret</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#mload">MLoad</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="FAQ.html">FAQ</a></li>
+<li class="toctree-l1"><a class="reference external" href="http://github.com/capitalone/giraffez">GitHub</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="index.html">giraffez</a>
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="index.html">Docs</a> &raquo;</li>
+      
+    <li>Python API</li>
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            <a href="_sources/api.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="python-api">
+<h1>Python API<a class="headerlink" href="#python-api" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="setting-up-logging">
+<h2>Setting up logging<a class="headerlink" href="#setting-up-logging" title="Permalink to this headline">¶</a></h2>
+<p>The console logging messages emitted to stderr when using giraffez from the command-line can also be enabled in the Python API (although disabled by default). Enabling it in a project is trivial:</p>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">giraffez</span>
+
+<span class="n">giraffez</span><span class="o">.</span><span class="n">setup_logging</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>The console logging messages can also be used with the Python <a class="reference external" href="https://docs.python.org/3/library/logging.html">logging</a> module:</p>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">logging</span>
+<span class="kn">import</span> <span class="nn">giraffez</span>
+
+<span class="n">log</span> <span class="o">=</span> <span class="n">logging</span><span class="o">.</span><span class="n">getLogger</span><span class="p">(</span><span class="s2">&quot;giraffez.console_logger&quot;</span><span class="p">)</span>
+<span class="n">log</span><span class="o">.</span><span class="n">addHandler</span><span class="p">(</span><span class="o">...</span><span class="p">)</span>
+<span class="n">log</span><span class="o">.</span><span class="n">setLevel</span><span class="p">(</span><span class="n">logging</span><span class="o">.</span><span class="n">DEBUG</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="giraffez-modules">
+<h2>giraffez modules<a class="headerlink" href="#giraffez-modules" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="module-giraffez.cmd">
+<span id="giraffez-cmd-module"></span><h3>giraffez.cmd module<a class="headerlink" href="#module-giraffez.cmd" title="Permalink to this headline">¶</a></h3>
+<dl class="class">
+<dt id="giraffez.cmd.TeradataCmd">
+<em class="property">class </em><code class="descclassname">giraffez.cmd.</code><code class="descname">TeradataCmd</code><span class="sig-paren">(</span><em>host=None</em>, <em>username=None</em>, <em>password=None</em>, <em>log_level=0</em>, <em>panic=False</em>, <em>config=None</em>, <em>key_file=None</em>, <em>dsn=None</em>, <em>protect=False</em>, <em>mload_session=False</em><span class="sig-paren">)</span><a class="headerlink" href="#giraffez.cmd.TeradataCmd" title="Permalink to this definition">¶</a></dt>
+<dd><p>The class for connecting to Teradata and executing commands and 
+queries using CLIv2.</p>
+<p>Exposed under the alias <code class="xref py py-class docutils literal"><span class="pre">giraffez.Cmd</span></code>.</p>
+<p>For large-output queries, <code class="xref py py-class docutils literal"><span class="pre">giraffez.Export</span></code> should be used.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>host</strong> (<em>str</em>) &#8211; Omit to read from <cite>~/.girafferc</cite> configuration file.</li>
+<li><strong>username</strong> (<em>str</em>) &#8211; Omit to read from <cite>~/.girafferc</cite> configuration file.</li>
+<li><strong>password</strong> (<em>str</em>) &#8211; Omit to read from <cite>~/.girafferc</cite> configuration file.</li>
+<li><strong>log_level</strong> (<em>int</em>) &#8211; Specify the desired level of output from the job.
+Possible values are <cite>giraffez.SILENCE</cite>, <cite>giraffez.INFO</cite> (default),
+<cite>giraffez.VERBOSE</cite>, and <cite>giraffez.DEBUG</cite></li>
+<li><strong>panic</strong> (<em>bool</em>) &#8211; If <cite>True</cite>, stop executing commands and return after the first error.</li>
+<li><strong>config</strong> (<em>str</em>) &#8211; Specify an alternate configuration file to be read from, when previous paramaters are omitted.</li>
+<li><strong>key_file</strong> (<em>str</em>) &#8211; Specify an alternate key file to use for configuration decryption</li>
+<li><strong>dsn</strong> (<em>string</em>) &#8211; Specify a connection name from the configuration file to be
+used, in place of the default.</li>
+<li><strong>protect</strong> (<em>bool</em>) &#8211; If authentication with Teradata fails and <cite>protect</cite> is <cite>True</cite>, 
+locks the connection used in the configuration file. This can be unlocked using the
+command <cite>giraffez config &#8211;unlock &lt;connection&gt;</cite>, changing the connection password,
+or via the <a class="reference internal" href="#giraffez.config.Config.unlock_connection" title="giraffez.config.Config.unlock_connection"><code class="xref py py-meth docutils literal"><span class="pre">unlock_connection()</span></code></a> method.</li>
+<li><strong>mload_session</strong> (<em>string</em>) &#8211; Identifies mload sessions to suppress duplicate log output.
+Used internally only.</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Raises:</th><td class="field-body"><ul class="first last simple">
+<li><a class="reference internal" href="#giraffez.errors.InvalidCredentialsError" title="giraffez.errors.InvalidCredentialsError"><strong>giraffez.errors.InvalidCredentialsError</strong></a> &#8211; if the supplied credentials are incorrect</li>
+<li><a class="reference internal" href="#giraffez.errors.TeradataError" title="giraffez.errors.TeradataError"><strong>giraffez.errors.TeradataError</strong></a> &#8211; if the connection cannot be established</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+<p>Meant to be used, where possible, with python&#8217;s <cite>with</cite> context handler
+to guarantee that connections will be closed gracefully when operation
+is complete:</p>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="k">with</span> <span class="n">giraffez</span><span class="o">.</span><span class="n">Cmd</span><span class="p">()</span> <span class="k">as</span> <span class="n">cmd</span><span class="p">:</span>
+    <span class="n">results</span> <span class="o">=</span> <span class="n">cmd</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="s1">&#39;select * from dbc.dbcinfo&#39;</span><span class="p">)</span>
+    <span class="c1"># continue executing statements and processing results</span>
+</pre></div>
+</div>
+<p>Use in this manner guarantees proper exit-handling and disconnection 
+when operation is completed.</p>
+<dl class="method">
+<dt id="giraffez.cmd.TeradataCmd.collect_stats">
+<code class="descname">collect_stats</code><span class="sig-paren">(</span><em>table_name</em>, <em>predicate=''</em><span class="sig-paren">)</span><a class="headerlink" href="#giraffez.cmd.TeradataCmd.collect_stats" title="Permalink to this definition">¶</a></dt>
+<dd><p>Collect statistics on the table <cite>table_name</cite>, using the given <cite>predicate</cite> if present</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>table_name</strong> (<em>str</em>) &#8211; The name of the table to collect statistics on</li>
+<li><strong>predicate</strong> (<em>str</em>) &#8211; The predicate of the collect statistics statement, which follows the table name</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">The result of the collect statistics statement</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first">None or <a class="reference internal" href="#giraffez.types.Result" title="giraffez.types.Result"><code class="xref py py-class docutils literal"><span class="pre">Result</span></code></a></p>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Raises:</th><td class="field-body"><ul class="first last simple">
+<li><a class="reference internal" href="#giraffez.errors.TeradataError" title="giraffez.errors.TeradataError"><strong>giraffez.errors.TeradataError</strong></a> &#8211; if statistic cannot be collected for <cite>table_name</cite></li>
+<li><a class="reference internal" href="#giraffez.errors.ObjectDoesNotExist" title="giraffez.errors.ObjectDoesNotExist"><strong>giraffez.errors.ObjectDoesNotExist</strong></a> &#8211; if the given <cite>table_name</cite> does not exist</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="giraffez.cmd.TeradataCmd.count_table">
+<code class="descname">count_table</code><span class="sig-paren">(</span><em>table_name</em><span class="sig-paren">)</span><a class="headerlink" href="#giraffez.cmd.TeradataCmd.count_table" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return the row count of <cite>table_name</cite></p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>table_name</strong> (<em>str</em>) &#8211; The name of the table to be counted</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">The number of rows in <cite>table_name</cite></td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body">int</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="giraffez.cmd.TeradataCmd.drop_table">
+<code class="descname">drop_table</code><span class="sig-paren">(</span><em>table_name</em><span class="sig-paren">)</span><a class="headerlink" href="#giraffez.cmd.TeradataCmd.drop_table" title="Permalink to this definition">¶</a></dt>
+<dd><p>Execute the statement <cite>drop table table_name</cite></p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>table_name</strong> (<em>str</em>) &#8211; The name of the table to be dropped</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><cite>None</cite> if <cite>table_name</cite> does not exist, otherwise the result of
+the statement</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body">None or <a class="reference internal" href="#giraffez.types.Result" title="giraffez.types.Result"><code class="xref py py-class docutils literal"><span class="pre">Result</span></code></a></td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="giraffez.cmd.TeradataCmd.execute">
+<code class="descname">execute</code><span class="sig-paren">(</span><em>command</em>, <em>sanitize=True</em><span class="sig-paren">)</span><a class="headerlink" href="#giraffez.cmd.TeradataCmd.execute" title="Permalink to this definition">¶</a></dt>
+<dd><p>Execute commands using CLIv2.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>command</strong> (<em>str</em>) &#8211; The SQL command to be executed</li>
+<li><strong>sanitize</strong> (<em>bool</em>) &#8211; Whether or not to call <code class="xref py py-func docutils literal"><span class="pre">prepare_statement()</span></code> on the command</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">the results of each statement in the command</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first"><a class="reference internal" href="#giraffez.types.Results" title="giraffez.types.Results"><code class="xref py py-class docutils literal"><span class="pre">Results</span></code></a></p>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Raises:</th><td class="field-body"><ul class="first last simple">
+<li><a class="reference internal" href="#giraffez.errors.TeradataError" title="giraffez.errors.TeradataError"><strong>giraffez.errors.TeradataError</strong></a> &#8211; if the query is invalid</li>
+<li><a class="reference internal" href="#giraffez.errors.GiraffeError" title="giraffez.errors.GiraffeError"><strong>giraffez.errors.GiraffeError</strong></a> &#8211; if the return data could not be decoded</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="giraffez.cmd.TeradataCmd.execute_many">
+<code class="descname">execute_many</code><span class="sig-paren">(</span><em>command</em>, <em>sanitize=True</em>, <em>parallel=False</em><span class="sig-paren">)</span><a class="headerlink" href="#giraffez.cmd.TeradataCmd.execute_many" title="Permalink to this definition">¶</a></dt>
+<dd><p>Execute multiple commands using CLIv2, splitting on statements and executing them individually. With <cite>parallel</cite> set, the behavior becomes that of <code class="xref py py-meth docutils literal"><span class="pre">execute()</span></code>.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>command</strong> (<em>str</em>) &#8211; The SQL command(s) to be executed</li>
+<li><strong>sanitize</strong> (<em>bool</em>) &#8211; Whether or not to call <code class="xref py py-func docutils literal"><span class="pre">clean_query()</span></code> on the statements</li>
+<li><strong>parallel</strong> (<em>bool</em>) &#8211; If <cite>True</cite>, call <code class="xref py py-meth docutils literal"><span class="pre">execute()</span></code> instead</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">the results of all executed commands</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last"><a class="reference internal" href="#giraffez.types.Results" title="giraffez.types.Results"><code class="xref py py-class docutils literal"><span class="pre">Results</span></code></a></p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="giraffez.cmd.TeradataCmd.execute_one">
+<code class="descname">execute_one</code><span class="sig-paren">(</span><em>command</em>, <em>sanitize=True</em><span class="sig-paren">)</span><a class="headerlink" href="#giraffez.cmd.TeradataCmd.execute_one" title="Permalink to this definition">¶</a></dt>
+<dd><p>Execute a single command using CLIv2.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>command</strong> (<em>str</em>) &#8211; The SQL command to be executed</li>
+<li><strong>sanitize</strong> (<em>bool</em>) &#8211; Whether or not to call <code class="xref py py-func docutils literal"><span class="pre">clean_query()</span></code> on the command</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">the result set of the first statement in the command (all are executed)</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first"><a class="reference internal" href="#giraffez.types.Result" title="giraffez.types.Result"><code class="xref py py-class docutils literal"><span class="pre">Result</span></code></a></p>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Raises:</th><td class="field-body"><ul class="first last simple">
+<li><a class="reference internal" href="#giraffez.errors.TeradataError" title="giraffez.errors.TeradataError"><strong>giraffez.errors.TeradataError</strong></a> &#8211; if the query is invalid</li>
+<li><a class="reference internal" href="#giraffez.errors.GiraffeError" title="giraffez.errors.GiraffeError"><strong>giraffez.errors.GiraffeError</strong></a> &#8211; if the return data could not be decoded</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="giraffez.cmd.TeradataCmd.exists">
+<code class="descname">exists</code><span class="sig-paren">(</span><em>object_name</em><span class="sig-paren">)</span><a class="headerlink" href="#giraffez.cmd.TeradataCmd.exists" title="Permalink to this definition">¶</a></dt>
+<dd><p>Check that object (table or view) <cite>object_name</cite> exists, by executing a <cite>show table object_name</cite> query, 
+followed by a <cite>show view object_name</cite> query if <cite>object_name</cite> is not a table.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>object_name</strong> (<em>str</em>) &#8211; The name of the object to check for existence.</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><cite>True</cite> if the object exists, <cite>False</cite> otherwise.</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body">bool</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="giraffez.cmd.TeradataCmd.get_columns">
+<code class="descname">get_columns</code><span class="sig-paren">(</span><em>table_name</em><span class="sig-paren">)</span><a class="headerlink" href="#giraffez.cmd.TeradataCmd.get_columns" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return the column information for <cite>table_name</cite>, by executing a <cite>select top 1 * from table_name</cite> query.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>table_name</strong> (<em>str</em>) &#8211; The fully-qualified name of the table to retrieve schema for</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">the columns of the table</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><a class="reference internal" href="#giraffez.types.Columns" title="giraffez.types.Columns"><code class="xref py py-class docutils literal"><span class="pre">Columns</span></code></a></td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="giraffez.cmd.TeradataCmd.release_mload">
+<code class="descname">release_mload</code><span class="sig-paren">(</span><em>table_name</em><span class="sig-paren">)</span><a class="headerlink" href="#giraffez.cmd.TeradataCmd.release_mload" title="Permalink to this definition">¶</a></dt>
+<dd><p>Release an MLoad lock on <cite>table_name</cite> by executing the statement <cite>release mload table_name</cite>,
+followed by the statement <cite>release mload table_name in apply</cite> if the lock cannot be released</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>table_name</strong> (<em>str</em>) &#8211; The name of the table to be dropped</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><cite>None</cite> if <cite>table_name</cite> does not exist, otherwise the result of 
+the statement</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body">None or <a class="reference internal" href="#giraffez.types.Result" title="giraffez.types.Result"><code class="xref py py-class docutils literal"><span class="pre">Result</span></code></a></td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-giraffez.export">
+<span id="giraffez-export-module"></span><h3>giraffez.export module<a class="headerlink" href="#module-giraffez.export" title="Permalink to this headline">¶</a></h3>
+<dl class="class">
+<dt id="giraffez.export.TeradataExport">
+<em class="property">class </em><code class="descclassname">giraffez.export.</code><code class="descname">TeradataExport</code><span class="sig-paren">(</span><em>query=None</em>, <em>host=None</em>, <em>username=None</em>, <em>password=None</em>, <em>delimiter='|'</em>, <em>null='NULL'</em>, <em>encoding='text'</em>, <em>log_level=0</em>, <em>config=None</em>, <em>key_file=None</em>, <em>dsn=None</em>, <em>protect=False</em><span class="sig-paren">)</span><a class="headerlink" href="#giraffez.export.TeradataExport" title="Permalink to this definition">¶</a></dt>
+<dd><p>The class for using the Teradata Parallel Transport API to quickly eport
+large amounts of data.</p>
+<p>Exposed under the alias <code class="xref py py-class docutils literal"><span class="pre">giraffez.Export</span></code>.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>query</strong> (<em>str</em>) &#8211; Either SQL query to execute and return results of, <strong>or</strong> the
+name of a table to export in its entirety</li>
+<li><strong>host</strong> (<em>str</em>) &#8211; Omit to read from <cite>~/.girafferc</cite> configuration file.</li>
+<li><strong>username</strong> (<em>str</em>) &#8211; Omit to read from <cite>~/.girafferc</cite> configuration file.</li>
+<li><strong>password</strong> (<em>str</em>) &#8211; Omit to read from <cite>~/.girafferc</cite> configuration file.</li>
+<li><strong>delimiter</strong> (<em>str</em>) &#8211; The delimiter to use when exporting with the &#8216;text&#8217;
+encoding. Defaults to &#8216;|&#8217;</li>
+<li><strong>null</strong> (<em>str</em>) &#8211; The string to use to represent a null value with the
+&#8216;text&#8217; encoding. Defaults to &#8216;NULL&#8217;</li>
+<li><strong>encoding</strong> (<em>str</em>) &#8211; The encoding format in which to export the data.
+Defaults to &#8216;text&#8217;.  Possible values are &#8216;text&#8217; - delimited text 
+output, &#8216;json&#8217; - to output each row as a JSON object, and &#8216;archive&#8217; to 
+output in giraffez archive format</li>
+<li><strong>log_level</strong> (<em>int</em>) &#8211; Specify the desired level of output from the job.
+Possible values are <cite>giraffez.SILENCE</cite>, <cite>giraffez.INFO</cite> (default),
+<cite>giraffez.VERBOSE</cite>, and <cite>giraffez.DEBUG</cite></li>
+<li><strong>config</strong> (<em>str</em>) &#8211; Specify an alternate configuration file to be read from, when previous paramters are omitted.</li>
+<li><strong>key_file</strong> (<em>str</em>) &#8211; Specify an alternate key file to use for configuration decryption</li>
+<li><strong>dsn</strong> (<em>string</em>) &#8211; Specify a connection name from the configuration file to be
+used, in place of the default.</li>
+<li><strong>protect</strong> (<em>bool</em>) &#8211; If authentication with Teradata fails and <cite>protect</cite> is <cite>True</cite>, 
+locks the connection used in the configuration file. This can be unlocked using the
+command <cite>giraffez config &#8211;unlock &lt;connection&gt;</cite>, changing the connection password,
+or via the <a class="reference internal" href="#giraffez.config.Config.unlock_connection" title="giraffez.config.Config.unlock_connection"><code class="xref py py-meth docutils literal"><span class="pre">unlock_connection()</span></code></a> method.</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Raises:</th><td class="field-body"><ul class="first last simple">
+<li><a class="reference internal" href="#giraffez.errors.InvalidCredentialsError" title="giraffez.errors.InvalidCredentialsError"><strong>giraffez.errors.InvalidCredentialsError</strong></a> &#8211; if the supplied credentials are incorrect</li>
+<li><a class="reference internal" href="#giraffez.errors.TeradataError" title="giraffez.errors.TeradataError"><strong>giraffez.errors.TeradataError</strong></a> &#8211; if the connection cannot be established</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+<p>Meant to be used, where possible, with Python&#8217;s <cite>with</cite> context handler
+to guarantee that connections will be closed gracefully when operation
+is complete:</p>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="k">with</span> <span class="n">giraffez</span><span class="o">.</span><span class="n">Export</span><span class="p">(</span><span class="s1">&#39;db.table1&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">export</span><span class="p">:</span>
+    <span class="k">print</span> <span class="n">export</span><span class="o">.</span><span class="n">header</span>
+    <span class="k">for</span> <span class="n">row</span> <span class="ow">in</span> <span class="n">export</span><span class="o">.</span><span class="n">results</span><span class="p">():</span>
+        <span class="k">print</span><span class="p">(</span><span class="n">row</span><span class="p">)</span>
+</pre></div>
+</div>
+<dl class="attribute">
+<dt id="giraffez.export.TeradataExport.columns">
+<code class="descname">columns</code><a class="headerlink" href="#giraffez.export.TeradataExport.columns" title="Permalink to this definition">¶</a></dt>
+<dd><p>Retrieve columns if necessary, and return them.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><a class="reference internal" href="#giraffez.types.Columns" title="giraffez.types.Columns"><code class="xref py py-class docutils literal"><span class="pre">Columns</span></code></a></td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="giraffez.export.TeradataExport.header">
+<code class="descname">header</code><a class="headerlink" href="#giraffez.export.TeradataExport.header" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return the header for the resulting data.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">String containing the formatted header, either column names
+separated by the current <cite>delimiter</cite> value if <cite>encoding</cite> is &#8216;text&#8217;,
+or the serialized <a class="reference internal" href="#giraffez.types.Columns" title="giraffez.types.Columns"><code class="xref py py-class docutils literal"><span class="pre">Columns</span></code></a> object for
+&#8216;archive&#8217; encoding</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body">str</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Raises:</th><td class="field-body"><strong>giraffez.errors.giraffez</strong> &#8211; if the query or table
+has not been specified</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="giraffez.export.TeradataExport.query">
+<code class="descname">query</code><a class="headerlink" href="#giraffez.export.TeradataExport.query" title="Permalink to this definition">¶</a></dt>
+<dd><p>Attributes set via property getter/setters</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="giraffez.export.TeradataExport.results">
+<code class="descname">results</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#giraffez.export.TeradataExport.results" title="Permalink to this definition">¶</a></dt>
+<dd><p>Generates and yields row results as they are returned from
+Teradata and processed.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">A generator that can be iterated over or coerced into a list.</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body">iterator (yields rows as strings)</td>
+</tr>
+</tbody>
+</table>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="c1"># iterate over results</span>
+<span class="k">with</span> <span class="n">giraffez</span><span class="o">.</span><span class="n">Export</span><span class="p">(</span><span class="s1">&#39;db.table1&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">export</span><span class="p">:</span>
+    <span class="k">for</span> <span class="n">row</span> <span class="ow">in</span> <span class="n">export</span><span class="o">.</span><span class="n">results</span><span class="p">():</span>
+        <span class="k">print</span> <span class="n">row</span>
+
+<span class="c1"># retrieve results as a list</span>
+<span class="k">with</span> <span class="n">giraffez</span><span class="o">.</span><span class="n">Export</span><span class="p">(</span><span class="s1">&#39;db.table2&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">export</span><span class="p">:</span>
+    <span class="n">results</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">export</span><span class="o">.</span><span class="n">results</span><span class="p">())</span>
+</pre></div>
+</div>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-giraffez.config">
+<span id="giraffez-config-module"></span><h3>giraffez.config module<a class="headerlink" href="#module-giraffez.config" title="Permalink to this headline">¶</a></h3>
+<dl class="class">
+<dt id="giraffez.config.Config">
+<em class="property">class </em><code class="descclassname">giraffez.config.</code><code class="descname">Config</code><span class="sig-paren">(</span><em>conf=None</em>, <em>mode='r'</em>, <em>key_file=None</em><span class="sig-paren">)</span><a class="headerlink" href="#giraffez.config.Config" title="Permalink to this definition">¶</a></dt>
+<dd><p>An object for reading, writing, and encrypting giraffez configuration
+files (YAML files). Creates an encryption key at ~/.giraffepg if one does not
+exist, and uses the key to encrypt and decrypt values keyed as &#8216;password&#8217;, &#8216;pass&#8217;,
+&#8216;apikey&#8217;, or &#8216;key&#8217;, as well as any values nested under the key &#8216;secure&#8217; (i.e. setting
+&#8216;secure.teradata.user&#8217; will encrypt the value.)</p>
+<p>Implements the <cite>__enter__</cite> and <cite>__exit__</cite> magic methods so that it can be used
+by Python&#8217;s <cite>with</cite> context-handler:</p>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="k">with</span> <span class="n">Config</span><span class="p">()</span> <span class="k">as</span> <span class="n">conf</span><span class="p">:</span>
+    <span class="n">conn</span> <span class="o">=</span> <span class="n">conf</span><span class="o">.</span><span class="n">get_connection</span><span class="p">()</span> <span class="c1"># get default connection</span>
+<span class="n">username</span> <span class="o">=</span> <span class="n">conn</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;username&#39;</span><span class="p">)</span>
+<span class="n">password</span> <span class="o">=</span> <span class="n">conn</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;password&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>conf</strong> (<em>str</em>) &#8211; A path to the configuration file to open.
+Defaults to ~/.girafferc</li>
+<li><strong>mode</strong> (<em>str</em>) &#8211; Defaults to &#8216;r&#8217; for read-only. If not changed,
+configuration will not be writeable while open.</li>
+<li><strong>key_file</strong> (<em>str</em>) &#8211; A path to the key file to open.
+Defaults to ~/.giraffepg</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+<dl class="attribute">
+<dt id="giraffez.config.Config.connections">
+<code class="descname">connections</code><a class="headerlink" href="#giraffez.config.Config.connections" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return a <code class="code docutils literal"><span class="pre">dict</span></code> of connections from the configuration settings.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Raises:</th><td class="field-body"><a class="reference internal" href="#giraffez.errors.ConfigurationError" title="giraffez.errors.ConfigurationError"><strong>giraffez.errors.ConfigurationError</strong></a> &#8211; if connections are not present</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="giraffez.config.Config.get_connection">
+<code class="descname">get_connection</code><span class="sig-paren">(</span><em>dsn=None</em><span class="sig-paren">)</span><a class="headerlink" href="#giraffez.config.Config.get_connection" title="Permalink to this definition">¶</a></dt>
+<dd><p>Retrieve a connection by the given <code class="code docutils literal"><span class="pre">dsn</span></code>, or the default connection.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><p class="first"><strong>dsn</strong> (<em>str</em>) &#8211; The name of the connection to retrieve. Defaults to <code class="code docutils literal"><span class="pre">None</span></code>,
+which retrieves the default connection.</p>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">A dict of connection settings</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Raises:</th><td class="field-body"><ul class="first last simple">
+<li><a class="reference internal" href="#giraffez.errors.ConfigurationError" title="giraffez.errors.ConfigurationError"><strong>giraffez.errors.ConfigurationError</strong></a> &#8211; if <code class="code docutils literal"><span class="pre">dsn</span></code> does not exist and a</li>
+<li><a class="reference internal" href="#giraffez.errors.ConnectionLock" title="giraffez.errors.ConnectionLock"><strong>giraffez.errors.ConnectionLock</strong></a> &#8211; if the corresponding connection is currently locked
+default is not set.</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="giraffez.config.Config.get_value">
+<code class="descname">get_value</code><span class="sig-paren">(</span><em>key</em>, <em>default={}</em>, <em>nested=True</em>, <em>decrypt=True</em><span class="sig-paren">)</span><a class="headerlink" href="#giraffez.config.Config.get_value" title="Permalink to this definition">¶</a></dt>
+<dd><p>Retrieve a value from the configuration based on its key. The key
+may be nested.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>key</strong> (<em>str</em>) &#8211; A path to the value, with nested levels joined by &#8216;.&#8217;</li>
+<li><strong>default</strong> &#8211; Value to return if the key does not exist (defaults to <code class="code docutils literal"><span class="pre">dict()</span></code>)</li>
+<li><strong>decrypt</strong> (<em>bool</em>) &#8211; If <code class="code docutils literal"><span class="pre">True</span></code>, decrypt an encrypted value before returning
+(if encrypted).  Defaults to <code class="code docutils literal"><span class="pre">True</span></code>.</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="giraffez.config.Config.list_value">
+<code class="descname">list_value</code><span class="sig-paren">(</span><em>decrypt=False</em><span class="sig-paren">)</span><a class="headerlink" href="#giraffez.config.Config.list_value" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return the contents of the configuration as a <code class="code docutils literal"><span class="pre">dict</span></code>. Depending on
+the structure of the YAML settings, the return value may contain nested
+<code class="code docutils literal"><span class="pre">dict</span></code> objects.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>decrypt</strong> (<em>bool</em>) &#8211; If <code class="code docutils literal"><span class="pre">True</span></code>, decrypt the contents before returning.</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">(potentially) nested <code class="code docutils literal"><span class="pre">dict</span></code> of keys and values, as parsed from
+the configuration file YAML contents.</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="classmethod">
+<dt id="giraffez.config.Config.lock_connection">
+<em class="property">classmethod </em><code class="descname">lock_connection</code><span class="sig-paren">(</span><em>conf</em>, <em>dsn</em>, <em>key=None</em><span class="sig-paren">)</span><a class="headerlink" href="#giraffez.config.Config.lock_connection" title="Permalink to this definition">¶</a></dt>
+<dd><p>A class method to lock a connection (given by <cite>dsn</cite>) in the specified
+configuration file. Automatically opens the file and writes to it before
+closing.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>conf</strong> (<em>str</em>) &#8211; The configuration file to modify</li>
+<li><strong>dsn</strong> (<em>str</em>) &#8211; The name of the connection to lock</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Raises:</th><td class="field-body"><p class="first last"><a class="reference internal" href="#giraffez.errors.ConfigurationError" title="giraffez.errors.ConfigurationError"><strong>giraffez.errors.ConfigurationError</strong></a> &#8211; if the connection does not exist</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="giraffez.config.Config.reload">
+<code class="descname">reload</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#giraffez.config.Config.reload" title="Permalink to this definition">¶</a></dt>
+<dd><p>Re-open and read settings from file.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="giraffez.config.Config.set_value">
+<code class="descname">set_value</code><span class="sig-paren">(</span><em>key</em>, <em>value</em><span class="sig-paren">)</span><a class="headerlink" href="#giraffez.config.Config.set_value" title="Permalink to this definition">¶</a></dt>
+<dd><p>Set a value within the configuration based on its key. The key
+may be nested, any nested levels that do not exist prior to the final
+segment of the key path will be created.
+<em>Note</em>: In order to write changes to the file, ensure that
+<a class="reference internal" href="#giraffez.config.Config.write" title="giraffez.config.Config.write"><code class="xref py py-meth docutils literal"><span class="pre">write()</span></code></a> is called prior to exit.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>key</strong> (<em>str</em>) &#8211; A path to the value destination, with nested levels joined by &#8216;.&#8217;</li>
+<li><strong>value</strong> &#8211; Value to set at the given key, can be any value that is
+YAML serializeable.</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="classmethod">
+<dt id="giraffez.config.Config.unlock_connection">
+<em class="property">classmethod </em><code class="descname">unlock_connection</code><span class="sig-paren">(</span><em>conf</em>, <em>dsn</em>, <em>key=None</em><span class="sig-paren">)</span><a class="headerlink" href="#giraffez.config.Config.unlock_connection" title="Permalink to this definition">¶</a></dt>
+<dd><p>A class method to unlock a connection (given by <cite>dsn</cite>) in the specified
+configuration file. Automatically opens the file and writes to it before
+closing.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>conf</strong> (<em>str</em>) &#8211; The configuration file to modify</li>
+<li><strong>dsn</strong> (<em>str</em>) &#8211; The name of the connection to unlock</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Raises:</th><td class="field-body"><p class="first last"><a class="reference internal" href="#giraffez.errors.ConfigurationError" title="giraffez.errors.ConfigurationError"><strong>giraffez.errors.ConfigurationError</strong></a> &#8211; if the connection does not exist</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="giraffez.config.Config.unset_value">
+<code class="descname">unset_value</code><span class="sig-paren">(</span><em>key</em><span class="sig-paren">)</span><a class="headerlink" href="#giraffez.config.Config.unset_value" title="Permalink to this definition">¶</a></dt>
+<dd><p>Remove a value at the given key &#8211; and any nested values &#8211;
+from the configuration.
+<em>Note</em>: In order to write changes to the file, ensure that
+<a class="reference internal" href="#giraffez.config.Config.write" title="giraffez.config.Config.write"><code class="xref py py-meth docutils literal"><span class="pre">write()</span></code></a> is called prior to exit.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>key</strong> (<em>str</em>) &#8211; A path to the value destination, with nested levels joined by &#8216;.&#8217;</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Raises:</th><td class="field-body"><a class="reference internal" href="#giraffez.errors.ConfigurationError" title="giraffez.errors.ConfigurationError"><strong>giraffez.errors.ConfigurationError</strong></a> &#8211; if the key specifies an invalid path, or does not exist</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="giraffez.config.Config.write">
+<code class="descname">write</code><span class="sig-paren">(</span><em>settings=None</em><span class="sig-paren">)</span><a class="headerlink" href="#giraffez.config.Config.write" title="Permalink to this definition">¶</a></dt>
+<dd><p>Save the current configuration to its file (as given by <cite>self._config_file</cite>).
+Optionally, settings may be passed in to override the current settings before
+writing. Returns <cite>None</cite> if the file could not be written to, either due to
+permissions, or if the <a class="reference internal" href="#giraffez.config.Config" title="giraffez.config.Config"><code class="xref py py-class docutils literal"><span class="pre">Config</span></code></a> object has the <cite>mode</cite>
+&#8216;r&#8217;.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>settings</strong> (<em>dict</em>) &#8211; Defaults to <cite>None</cite>, if not <cite>None</cite> this will replace
+<cite>self.settings</cite> prior to writing to the file</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="classmethod">
+<dt id="giraffez.config.Config.write_default">
+<em class="property">classmethod </em><code class="descname">write_default</code><span class="sig-paren">(</span><em>conf=None</em><span class="sig-paren">)</span><a class="headerlink" href="#giraffez.config.Config.write_default" title="Permalink to this definition">¶</a></dt>
+<dd><p>A class method to write a default configuration file structure to a file.
+Note that the contents of the file will be overwritten if it already exists.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>conf</strong> (<em>str</em>) &#8211; The name of the file to write to. Defaults to <cite>None</cite>, for ~/.girafferc</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">The content written to the file</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body">str</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-giraffez.load">
+<span id="giraffez-load-module"></span><h3>giraffez.load module<a class="headerlink" href="#module-giraffez.load" title="Permalink to this headline">¶</a></h3>
+<dl class="class">
+<dt id="giraffez.load.TeradataLoad">
+<em class="property">class </em><code class="descclassname">giraffez.load.</code><code class="descname">TeradataLoad</code><span class="sig-paren">(</span><em>host=None</em>, <em>username=None</em>, <em>password=None</em>, <em>log_level=0</em>, <em>panic=False</em>, <em>config=None</em>, <em>key_file=None</em>, <em>dsn=None</em>, <em>protect=False</em>, <em>mload_session=False</em><span class="sig-paren">)</span><a class="headerlink" href="#giraffez.load.TeradataLoad" title="Permalink to this definition">¶</a></dt>
+<dd><p>The class for inserting into Teradata tables using CLIv2.</p>
+<p>Exposed under the alias <code class="xref py py-class docutils literal"><span class="pre">giraffez.Load</span></code>.</p>
+<p>This class should be used for inserting into Teradata tables in all but
+very large (&gt; ~100k rows) cases.</p>
+<p>See <a class="reference internal" href="#giraffez.cmd.TeradataCmd" title="giraffez.cmd.TeradataCmd"><code class="xref py py-class docutils literal"><span class="pre">TeradataCmd</span></code></a> for constructor arguments.</p>
+<p>Meant to be used, where possible, with python&#8217;s <cite>with</cite> context handler
+to guarantee that connections will be closed gracefully when operation
+is complete:</p>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="k">with</span> <span class="n">giraffez</span><span class="o">.</span><span class="n">Load</span><span class="p">()</span> <span class="k">as</span> <span class="n">load</span><span class="p">:</span>
+    <span class="n">load</span><span class="o">.</span><span class="n">from_file</span><span class="p">(</span><span class="s1">&#39;myfile.txt&#39;</span><span class="p">,</span> <span class="s1">&#39;database.my_table&#39;</span><span class="p">)</span>
+    <span class="c1"># continue executing statements and processing results</span>
+</pre></div>
+</div>
+<p>Use in this manner guarantees proper exit-handling and disconnection 
+when operation is completed (or interrupted).</p>
+<dl class="method">
+<dt id="giraffez.load.TeradataLoad.from_file">
+<code class="descname">from_file</code><span class="sig-paren">(</span><em>table_name</em>, <em>input_file_name</em>, <em>delimiter=None</em>, <em>null='NULL'</em>, <em>date_conversion=False</em><span class="sig-paren">)</span><a class="headerlink" href="#giraffez.load.TeradataLoad.from_file" title="Permalink to this definition">¶</a></dt>
+<dd><p>Load a text file into the specified <cite>table_name</cite></p>
+<p>For most insertions, this will be faster and produce less strain on
+Teradata than using <code class="xref py py-class docutils literal"><span class="pre">TeradataMLoad</span></code> (<code class="xref py py-class docutils literal"><span class="pre">giraffez.MLoad</span></code>).</p>
+<p>Requires that the input file be a properly delimited text file, with a
+header that corresponds to the target fields for insertion. Valid delimiters
+include &#8216;|&#8217;, &#8216;,&#8217;, and &#8216;t&#8217; (tab).</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>table_name</strong> (<em>str</em>) &#8211; The name of the destination table</li>
+<li><strong>input_file_name</strong> (<em>str</em>) &#8211; The name of the file to read rows from</li>
+<li><strong>delimiter</strong> (<em>str</em>) &#8211; The delimiter used by the input file (or <cite>None</cite> 
+to infer it from the header).</li>
+<li><strong>null</strong> (<em>str</em>) &#8211; The string used to indicated nulled values in the
+file (defaults to <cite>&#8216;NULL&#8217;</cite>).</li>
+<li><strong>date_conversion</strong> (<em>bool</em>) &#8211; If <cite>True</cite>, attempts to coerce date fields
+into a standard format (defaults to <cite>False</cite>).</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">A dictionary containing counts of applied rows and errors</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last">dict</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="giraffez.load.TeradataLoad.insert">
+<code class="descname">insert</code><span class="sig-paren">(</span><em>table_name</em>, <em>rows</em>, <em>fields=None</em>, <em>date_conversion=True</em><span class="sig-paren">)</span><a class="headerlink" href="#giraffez.load.TeradataLoad.insert" title="Permalink to this definition">¶</a></dt>
+<dd><p>Insert Python <cite>list`s as rows into the specified `table_name</cite></p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>table_name</strong> (<em>str</em>) &#8211; The name of the destination table</li>
+<li><strong>rows</strong> (<em>list</em>) &#8211; A list of rows. Each row must be a list of 
+field values.</li>
+<li><strong>fields</strong> (<em>list</em>) &#8211; The names of the target fields, in the order that 
+the data will be presented (defaults to <cite>None</cite> for all columns in the table).</li>
+<li><strong>date_conversion</strong> (<em>bool</em>) &#8211; If <cite>True</cite>, attempts to coerce date fields
+into a standard format (defaults to <cite>False</cite>).</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">A dictionary containing counts of applied rows and errors</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first">dict</p>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Raises:</th><td class="field-body"><ul class="first last simple">
+<li><strong>giraffez.errors.FormatError</strong> &#8211; if the number of values in a row does not match 
+the length of <cite>fields</cite></li>
+<li><a class="reference internal" href="#giraffez.errors.GiraffeError" title="giraffez.errors.GiraffeError"><strong>giraffez.errors.GiraffeError</strong></a> &#8211; if <cite>panic</cite> is set and the insert statement 
+caused an error.</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-giraffez.mload">
+<span id="giraffez-mload-module"></span><h3>giraffez.mload module<a class="headerlink" href="#module-giraffez.mload" title="Permalink to this headline">¶</a></h3>
+<dl class="class">
+<dt id="giraffez.mload.TeradataMLoad">
+<em class="property">class </em><code class="descclassname">giraffez.mload.</code><code class="descname">TeradataMLoad</code><span class="sig-paren">(</span><em>table=None</em>, <em>host=None</em>, <em>username=None</em>, <em>password=None</em>, <em>log_level=0</em>, <em>config=None</em>, <em>key_file=None</em>, <em>dsn=None</em>, <em>protect=False</em><span class="sig-paren">)</span><a class="headerlink" href="#giraffez.mload.TeradataMLoad" title="Permalink to this definition">¶</a></dt>
+<dd><p>The class for using the TPT API&#8217;s UPDATE (MLoad) driver to insert a
+large (&gt; ~100k rows) amount of data into an existing Teradata table.</p>
+<p>Exposed under the alias <code class="xref py py-class docutils literal"><span class="pre">giraffez.MLoad</span></code>.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>table</strong> (<em>str</em>) &#8211; The name of the target table for loading.</li>
+<li><strong>host</strong> (<em>str</em>) &#8211; Omit to read from <cite>~/.girafferc</cite> configuration file.</li>
+<li><strong>username</strong> (<em>str</em>) &#8211; Omit to read from <cite>~/.girafferc</cite> configuration file.</li>
+<li><strong>password</strong> (<em>str</em>) &#8211; Omit to read from <cite>~/.girafferc</cite> configuration file.</li>
+<li><strong>log_level</strong> (<em>int</em>) &#8211; Specify the desired level of output from the job.
+Possible values are <cite>giraffez.SILENCE</cite>, <cite>giraffez.INFO</cite> (default),
+<cite>giraffez.VERBOSE</cite>, and <cite>giraffez.DEBUG</cite></li>
+<li><strong>config</strong> (<em>str</em>) &#8211; Specify an alternate configuration file to be read from,
+when previous paramaters are omitted.</li>
+<li><strong>key_file</strong> (<em>str</em>) &#8211; Specify an alternate key file to use for configuration decryption</li>
+<li><strong>dsn</strong> (<em>string</em>) &#8211; Specify a connection name from the configuration file to be
+used, in place of the default.</li>
+<li><strong>protect</strong> (<em>bool</em>) &#8211; If authentication with Teradata fails and <cite>protect</cite> is <cite>True</cite>, 
+locks the connection used in the configuration file. This can be unlocked using the
+command <cite>giraffez config &#8211;unlock &lt;connection&gt;</cite>, changing the connection password,
+or via the <a class="reference internal" href="#giraffez.config.Config.unlock_connection" title="giraffez.config.Config.unlock_connection"><code class="xref py py-meth docutils literal"><span class="pre">unlock_connection()</span></code></a> method.</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Raises:</th><td class="field-body"><ul class="first last simple">
+<li><a class="reference internal" href="#giraffez.errors.InvalidCredentialsError" title="giraffez.errors.InvalidCredentialsError"><strong>giraffez.errors.InvalidCredentialsError</strong></a> &#8211; if the supplied credentials are incorrect</li>
+<li><a class="reference internal" href="#giraffez.errors.TeradataError" title="giraffez.errors.TeradataError"><strong>giraffez.errors.TeradataError</strong></a> &#8211; if the connection cannot be established</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+<p>If the target table is currently under an MLoad lock (such as if the
+previous operation failed), a <cite>release mload</cite> statement will be 
+executed on the table, and the load job will be re-attempted.</p>
+<p>Meant to be used, where possible, with python&#8217;s <cite>with</cite> context handler
+to guarantee that connections will be closed gracefully when operation
+is complete.</p>
+<dl class="method">
+<dt id="giraffez.mload.TeradataMLoad.checkpoint">
+<code class="descname">checkpoint</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#giraffez.mload.TeradataMLoad.checkpoint" title="Permalink to this definition">¶</a></dt>
+<dd><p>Execute a checkpoint while loading rows. Called automatically
+when loading from a file. Updates the exit code of the driver to
+reflect errors.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="giraffez.mload.TeradataMLoad.cleanup">
+<code class="descname">cleanup</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#giraffez.mload.TeradataMLoad.cleanup" title="Permalink to this definition">¶</a></dt>
+<dd><p>Drops any existing work tables, as returned by 
+<code class="xref py py-meth docutils literal"><span class="pre">tables()</span></code>.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Raises:</th><td class="field-body"><a class="reference internal" href="#giraffez.errors.TeradataError" title="giraffez.errors.TeradataError"><strong>giraffez.errors.TeradataError</strong></a> &#8211; if a Teradata error ocurred</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="giraffez.mload.TeradataMLoad.columns">
+<code class="descname">columns</code><a class="headerlink" href="#giraffez.mload.TeradataMLoad.columns" title="Permalink to this definition">¶</a></dt>
+<dd><p>The list of columns in use.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Getter:</th><td class="field-body"><p class="first">Return the list of columns in use.
+:rtype: <cite>~giraffez.cmd.Columns</cite></p>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Setter:</th><td class="field-body"><p class="first">Set the columns to be loaded into, as well as their order. If
+loading from a file, these will be determined from the file header.
+Not necessary if you are loading into all columns, in the original
+order.</p>
+<table class="last docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name" colspan="2">param list field_names:</th></tr>
+<tr class="field-odd field"><td>&nbsp;</td><td class="field-body">A list of names of columns to be loaded into,
+in the order that the fields of data will be presented in each row</td>
+</tr>
+<tr class="field-even field"><th class="field-name" colspan="2">raises <cite>giraffez.errors.GiraffeError</cite>:</th></tr>
+<tr class="field-even field"><td>&nbsp;</td><td class="field-body">if <cite>field_names</cite> is not a <cite>list</cite></td>
+</tr>
+<tr class="field-odd field"><th class="field-name" colspan="2">raises <cite>giraffez.errors.GiraffeError</cite>:</th></tr>
+<tr class="field-odd field"><td>&nbsp;</td><td class="field-body">if the target table has not been set.</td>
+</tr>
+</tbody>
+</table>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="giraffez.mload.TeradataMLoad.encoding">
+<code class="descname">encoding</code><a class="headerlink" href="#giraffez.mload.TeradataMLoad.encoding" title="Permalink to this definition">¶</a></dt>
+<dd><p>The encoding of the file being loaded.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Getter:</th><td class="field-body"><p class="first">Returns the name of the encoding being used.</p>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Setter:</th><td class="field-body"><p class="first">Set the encoding of the input file if not specified to the 
+constructor of the instance.</p>
+<table class="last docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name" colspan="2">param str value:</th></tr>
+<tr class="field-odd field"><td>&nbsp;</td><td class="field-body">Either &#8216;text&#8217; or &#8216;archive&#8217;</td>
+</tr>
+<tr class="field-even field"><th class="field-name" colspan="2">raises <cite>giraffez.errors.GiraffeError</cite>:</th></tr>
+<tr class="field-even field"><td>&nbsp;</td><td class="field-body">if the <cite>enc</cite> is not one
+of the above</td>
+</tr>
+</tbody>
+</table>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="giraffez.mload.TeradataMLoad.finish">
+<code class="descname">finish</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#giraffez.mload.TeradataMLoad.finish" title="Permalink to this definition">¶</a></dt>
+<dd><p>Finishes the load job. <strong>Called automatically when loading from a
+file, but must be called at the end of the job after loading rows
+individually.</strong></p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">The exit code returned when applying rows to the table</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="giraffez.mload.TeradataMLoad.from_file">
+<code class="descname">from_file</code><span class="sig-paren">(</span><em>filename</em>, <em>table=None</em>, <em>null='NULL'</em>, <em>delimiter=None</em>, <em>panic=True</em><span class="sig-paren">)</span><a class="headerlink" href="#giraffez.mload.TeradataMLoad.from_file" title="Permalink to this definition">¶</a></dt>
+<dd><p>Load from a file into the target table, handling each step of the
+load process.</p>
+<p>Can load from text files, and properly formatted giraffez archive
+files. In both cases, if Gzip compression is detected the file will be
+decompressed while reading and handled appropriately. The encoding is
+determined automatically by the contents of the file.</p>
+<p>It is not necessary to set the columns in use prior to loading from a file.
+In the case of a text file, the header is used to determine column names
+and their order. Valid delimiters include &#8216;|&#8217;, &#8216;,&#8217;, and &#8216;t&#8217; (tab). When 
+loading an archive file, the column information is decoded alongside the data.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>filename</strong> (<em>str</em>) &#8211; The location of the file to be loaded</li>
+<li><strong>table</strong> (<em>str</em>) &#8211; The name of the target table, if it was not specified
+to the constructor for the isntance</li>
+<li><strong>null</strong> (<em>str</em>) &#8211; The string that indicates a null value in the rows being
+inserted from a file. Defaults to &#8216;NULL&#8217;</li>
+<li><strong>delimiter</strong> (<em>str</em>) &#8211; When loading a file, indicates that fields are
+separated by this delimiter. Defaults to <cite>None</cite>, which causes the
+delimiter to be determined from the header of the file. In most
+cases, this behavior is sufficient</li>
+<li><strong>panic</strong> (<em>bool</em>) &#8211; If <cite>True</cite>, when an error is encountered it will be
+raised. Otherwise, the error will be logged and <cite>self.error_count</cite>
+is incremented.</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">The output of the call to
+<code class="xref py py-meth docutils literal"><span class="pre">finish()</span></code></p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Raises:</th><td class="field-body"><ul class="first last simple">
+<li><a class="reference internal" href="#giraffez.errors.GiraffeError" title="giraffez.errors.GiraffeError"><strong>giraffez.errors.GiraffeError</strong></a> &#8211; if table was not set and <cite>table</cite>
+is <cite>None</cite>, or if a Teradata error ocurred while retrieving table info.</li>
+<li><a class="reference internal" href="#giraffez.errors.GiraffeEncodeError" title="giraffez.errors.GiraffeEncodeError"><strong>giraffez.errors.GiraffeEncodeError</strong></a> &#8211; if <cite>panic</cite> is <cite>True</cite> and there
+are format errors in the row values.</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="giraffez.mload.TeradataMLoad.initiated">
+<code class="descname">initiated</code><em class="property"> = None</em><a class="headerlink" href="#giraffez.mload.TeradataMLoad.initiated" title="Permalink to this definition">¶</a></dt>
+<dd><p>Flags tracking the important stages of MultiLoad to ensure
+that the job is shutdown smoothly (if possible).</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="giraffez.mload.TeradataMLoad.load_row">
+<code class="descname">load_row</code><span class="sig-paren">(</span><em>items</em>, <em>panic=True</em><span class="sig-paren">)</span><a class="headerlink" href="#giraffez.mload.TeradataMLoad.load_row" title="Permalink to this definition">¶</a></dt>
+<dd><p>Load a single row into the target table.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>items</strong> (<em>list</em>) &#8211; A list of values in the row corresponding to the
+fields specified by <cite>~giraffez.load.TeradataMLoad.columns</cite></li>
+<li><strong>panic</strong> (<em>bool</em>) &#8211; If <cite>True</cite>, when an error is encountered it will be
+raised. Otherwise, the error will be logged and <cite>self.error_count</cite>
+is incremented.</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Raises:</th><td class="field-body"><ul class="first last simple">
+<li><a class="reference internal" href="#giraffez.errors.GiraffeEncodeError" title="giraffez.errors.GiraffeEncodeError"><strong>giraffez.errors.GiraffeEncodeError</strong></a> &#8211; if <cite>panic</cite> is <cite>True</cite> and there
+are format errors in the row values.</li>
+<li><a class="reference internal" href="#giraffez.errors.GiraffeError" title="giraffez.errors.GiraffeError"><strong>giraffez.errors.GiraffeError</strong></a> &#8211; if table name is not set.</li>
+<li><a class="reference internal" href="#giraffez.errors.TeradataError" title="giraffez.errors.TeradataError"><strong>giraffez.errors.TeradataError</strong></a> &#8211; if there is a problem
+connecting to Teradata.</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="giraffez.mload.TeradataMLoad.release">
+<code class="descname">release</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#giraffez.mload.TeradataMLoad.release" title="Permalink to this definition">¶</a></dt>
+<dd><p>Attempt release of target mload table.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Raises:</th><td class="field-body"><a class="reference internal" href="#giraffez.errors.GiraffeError" title="giraffez.errors.GiraffeError"><strong>giraffez.errors.GiraffeError</strong></a> &#8211; if table was not set by
+the constructor, the <code class="code docutils literal"><span class="pre">TeradataMLoad.table</span></code>, or
+<code class="xref py py-meth docutils literal"><span class="pre">from_file()</span></code>.</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="giraffez.mload.TeradataMLoad.table">
+<code class="descname">table</code><a class="headerlink" href="#giraffez.mload.TeradataMLoad.table" title="Permalink to this definition">¶</a></dt>
+<dd><p>The name of the target table.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Getter:</th><td class="field-body"><p class="first">Returns the name of the target table, or <code class="code docutils literal"><span class="pre">None</span></code> if it
+has not been set.</p>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Setter:</th><td class="field-body"><p class="first">Set the name of the target table, if the table name
+was not given to the constructor of the
+<code class="xref py py-class docutils literal"><span class="pre">TeradataMLoad</span></code> instance or
+<code class="xref py py-meth docutils literal"><span class="pre">from_file()</span></code>.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name" colspan="2">param str table_name:</th></tr>
+<tr class="field-odd field"><td>&nbsp;</td><td class="field-body">Name of the table to load into, must include
+all qualifiers such as database name</td>
+</tr>
+<tr class="field-even field"><th class="field-name" colspan="2">raises <cite>giraffez.errors.GiraffeError</cite>:</th></tr>
+<tr class="field-even field"><td>&nbsp;</td><td class="field-body">if the MLoad connection has
+already been initiated, or the <code class="xref py py-class docutils literal"><span class="pre">giraffez.Cmd</span></code> connection cannot
+be established</td>
+</tr>
+<tr class="field-odd field"><th class="field-name" colspan="2">raises <cite>giraffez.errors.TeradataError</cite>:</th></tr>
+<tr class="field-odd field"><td>&nbsp;</td><td class="field-body">if the column data could not be
+retrieved from Teradata</td>
+</tr>
+</tbody>
+</table>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Type:</th><td class="field-body"><p class="first last">str</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="giraffez.mload.TeradataMLoad.tables">
+<code class="descname">tables</code><a class="headerlink" href="#giraffez.mload.TeradataMLoad.tables" title="Permalink to this definition">¶</a></dt>
+<dd><p>The names of the work tables used for loading.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">A list of four tables, each the name of the target table
+with the added suffixes, &#8220;_wt&#8221;, &#8220;_log&#8221;, &#8220;_e1&#8221;, and &#8220;_e2&#8221;</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Raises:</th><td class="field-body"><a class="reference internal" href="#giraffez.errors.GiraffeError" title="giraffez.errors.GiraffeError"><strong>giraffez.errors.GiraffeError</strong></a> &#8211; if table was not set by
+the constructor, the <code class="code docutils literal"><span class="pre">TeradataMLoad.table</span></code>, or
+<code class="xref py py-meth docutils literal"><span class="pre">from_file()</span></code>.</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="giraffez.mload.TeradataMLoad.total_count">
+<code class="descname">total_count</code><a class="headerlink" href="#giraffez.mload.TeradataMLoad.total_count" title="Permalink to this definition">¶</a></dt>
+<dd><p>The number of rows applied, plus the number of rows in error.</p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-giraffez.types">
+<span id="giraffez-types-module"></span><h3>giraffez.types module<a class="headerlink" href="#module-giraffez.types" title="Permalink to this headline">¶</a></h3>
+<dl class="class">
+<dt id="giraffez.types.Column">
+<em class="property">class </em><code class="descclassname">giraffez.types.</code><code class="descname">Column</code><span class="sig-paren">(</span><em>column</em>, <em>filler=False</em><span class="sig-paren">)</span><a class="headerlink" href="#giraffez.types.Column" title="Permalink to this definition">¶</a></dt>
+<dd><p>An object containing the column information used by Teradata for
+encoding, decoding, and identifying data.</p>
+<p>Implements the <cite>__eq__</cite> magic method for comparison with other instances
+(validating that each field holds the same data), and the <cite>__str__</cite> and
+<cite>__repr__</cite> magic methods for coersion to string values and more pleasant
+visual presentation.</p>
+<p><strong>Fields:</strong></p>
+<dl class="docutils">
+<dt>name</dt>
+<dd>The original name of the column in the table it belongs to</dd>
+<dt>alias</dt>
+<dd>The alias of the column in the query</dd>
+<dt>title</dt>
+<dd>The title of the column in the query</dd>
+<dt>type</dt>
+<dd>Numeric value used by Teradata to indicate column type</dd>
+<dt>length</dt>
+<dd>Length in bytes that the field&#8217;s values occupy</dd>
+<dt>precision</dt>
+<dd>Precision of floating-point numeric columns</dd>
+<dt>scale</dt>
+<dd>Scale of floating-point numeric columns</dd>
+<dt>filler</dt>
+<dd>Indicator that the column belongs to the target table, but
+will not be used in the current operation</dd>
+</dl>
+</dd></dl>
+
+<dl class="class">
+<dt id="giraffez.types.Columns">
+<em class="property">class </em><code class="descclassname">giraffez.types.</code><code class="descname">Columns</code><span class="sig-paren">(</span><em>items=[]</em><span class="sig-paren">)</span><a class="headerlink" href="#giraffez.types.Columns" title="Permalink to this definition">¶</a></dt>
+<dd><p>A set of <a class="reference internal" href="#giraffez.types.Column" title="giraffez.types.Column"><code class="xref py py-class docutils literal"><span class="pre">Column</span></code></a> objects, used to convey
+original table schema without losing information.</p>
+<dl class="classmethod">
+<dt id="giraffez.types.Columns.deserialize">
+<em class="property">classmethod </em><code class="descname">deserialize</code><span class="sig-paren">(</span><em>data</em><span class="sig-paren">)</span><a class="headerlink" href="#giraffez.types.Columns.deserialize" title="Permalink to this definition">¶</a></dt>
+<dd><p>Deserializes giraffez Archive header. See
+<a class="reference internal" href="#giraffez.types.Columns.serialize" title="giraffez.types.Columns.serialize"><code class="xref py py-meth docutils literal"><span class="pre">serialize()</span></code></a> for more information.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>data</strong> (<em>str</em>) &#8211; data in giraffez Archive format, to be deserialized</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><a class="reference internal" href="#giraffez.types.Columns" title="giraffez.types.Columns"><code class="xref py py-class docutils literal"><span class="pre">Columns</span></code></a> object decoded from data</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="giraffez.types.Columns.get">
+<code class="descname">get</code><span class="sig-paren">(</span><em>column_name</em><span class="sig-paren">)</span><a class="headerlink" href="#giraffez.types.Columns.get" title="Permalink to this definition">¶</a></dt>
+<dd><p>Retrieve a column from the list with name value <cite>column_name</cite></p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>column_name</strong> (<em>str</em>) &#8211; The name of the column to get</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><a class="reference internal" href="#giraffez.types.Column" title="giraffez.types.Column"><code class="xref py py-class docutils literal"><span class="pre">Column</span></code></a> with the specified name, or <cite>None</cite> if it does not exist.</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="giraffez.types.Columns.names">
+<code class="descname">names</code><a class="headerlink" href="#giraffez.types.Columns.names" title="Permalink to this definition">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">The names of the contained <a class="reference internal" href="#giraffez.types.Column" title="giraffez.types.Column"><code class="xref py py-class docutils literal"><span class="pre">Column</span></code></a> objects</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body">list</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="giraffez.types.Columns.serialize">
+<code class="descname">serialize</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#giraffez.types.Columns.serialize" title="Permalink to this definition">¶</a></dt>
+<dd><p>Serializes the columns into the giraffez archive header
+binary format:</p>
+<div class="highlight-python"><div class="highlight"><pre><span></span>0      1      2      
++------+------+------+------+------+------+------+------+
+| Header      | Header Data                             |
+| Length      |                                         |
++------+------+------+------+------+------+------+------+
+
+           giraffez Archive Header Format
+
+                       Fig. 1
+
+Header Length: 2 bytes
+    Full length of archive header 
+
+Header Data: variable
+    Binary data representing N column(s) using the format
+    specified in Fig. 2
+
+
+0      1      2      3      4      5      6      7      8
++------+------+------+------+------+------+------+------+
+| Type        | Length      | Precision   | Scale       | 
++------+------+------+------+------+------+------+------+
+| Name Length | Name                                    |
++------+------+------+------+------+------+------+------+
+
+               Binary Column Format
+
+                       Fig. 2
+
+Type: 2 bytes
+    Numerical representation of column type defined by
+    Teradata&#39;s CLIv2
+
+Length: 2 bytes
+    Column length
+
+Scale: 2 bytes
+    Column scale
+
+Precision: 2 bytes
+    Column precision
+
+Name Length: 2 bytes
+    Length used for reading variable column name
+
+Name: variable
+    Name of column
+</pre></div>
+</div>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">Packed binary data, representing the serialized <a class="reference internal" href="#giraffez.types.Columns" title="giraffez.types.Columns"><code class="xref py py-class docutils literal"><span class="pre">Columns</span></code></a></td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body">str</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="giraffez.types.Columns.set_filter">
+<code class="descname">set_filter</code><span class="sig-paren">(</span><em>names=None</em><span class="sig-paren">)</span><a class="headerlink" href="#giraffez.types.Columns.set_filter" title="Permalink to this definition">¶</a></dt>
+<dd><p>Set the names of columns to be used when iterating through the list,
+retrieving names, etc.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>names</strong> (<em>list</em>) &#8211; A list of names to be used, or <cite>None</cite> for all</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="giraffez.types.GiraffeDate">
+<em class="property">class </em><code class="descclassname">giraffez.types.</code><code class="descname">GiraffeDate</code><span class="sig-paren">(</span><em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#giraffez.types.GiraffeDate" title="Permalink to this definition">¶</a></dt>
+<dd><p>Ensures that datetime objects can be proper coerced into a
+string value of a given format.</p>
+<p>There is a Python bug (yes, it is a bug, not a feature) where
+datetime objects representing any dates before 1900 raises an
+error when calling the strftime method. This will ensure that the
+date is coerced safely with str() into something Teradata can use.</p>
+</dd></dl>
+
+<dl class="class">
+<dt id="giraffez.types.GiraffeTime">
+<em class="property">class </em><code class="descclassname">giraffez.types.</code><code class="descname">GiraffeTime</code><a class="headerlink" href="#giraffez.types.GiraffeTime" title="Permalink to this definition">¶</a></dt>
+<dd><p>Represents Teradata date/time data types such as TIME(0). Currently,
+does not keep microsecond for other types like TIME(n).</p>
+</dd></dl>
+
+<dl class="class">
+<dt id="giraffez.types.GiraffeTimestamp">
+<em class="property">class </em><code class="descclassname">giraffez.types.</code><code class="descname">GiraffeTimestamp</code><span class="sig-paren">(</span><em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#giraffez.types.GiraffeTimestamp" title="Permalink to this definition">¶</a></dt>
+<dd><p>Represents Teradata date/time data types such as TIMESTAMP(n).</p>
+</dd></dl>
+
+<dl class="class">
+<dt id="giraffez.types.Result">
+<em class="property">class </em><code class="descclassname">giraffez.types.</code><code class="descname">Result</code><span class="sig-paren">(</span><em>result</em><span class="sig-paren">)</span><a class="headerlink" href="#giraffez.types.Result" title="Permalink to this definition">¶</a></dt>
+<dd><p>Contains the result of a Teradata query</p>
+<p>Defines the <cite>__len__</cite> magic method to get the number of rows returned:</p>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="n">result</span> <span class="o">=</span> <span class="n">cli</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="s2">&quot;select * from tablename;&quot;</span><span class="p">)</span>
+<span class="n">num_rows</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">result</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Defines the <cite>__iter__</cite> magic method to iterate through the returned rows:</p>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">row</span> <span class="ow">in</span> <span class="n">result</span><span class="p">:</span>
+    <span class="k">print</span> <span class="n">row</span>
+</pre></div>
+</div>
+<p>Defines the <cite>__getattr__</cite> magic method to return a list of values for a given column:</p>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="k">print</span> <span class="n">results</span><span class="o">.</span><span class="n">first_name</span> <span class="c1"># [&#39;alice&#39;, &#39;bob&#39;, &#39;charlie&#39;, ...]</span>
+</pre></div>
+</div>
+<p>Defines the <cite>__getitem__</cite> magic method to return a list of values for a given column, or numeric index:</p>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="k">print</span> <span class="n">results</span><span class="o">.</span><span class="n">columns</span><span class="o">.</span><span class="n">names</span> <span class="c1"># first_name, last_name, id</span>
+<span class="k">print</span> <span class="n">results</span><span class="p">[</span><span class="s1">&#39;first_name&#39;</span><span class="p">]</span> <span class="c1"># [&#39;alice&#39;, &#39;bob&#39;, &#39;charlie&#39;, ...]</span>
+<span class="k">print</span> <span class="n">results</span><span class="p">[</span><span class="s1">&#39;id&#39;</span><span class="p">]</span> <span class="c1"># [&#39;abc123&#39;, &#39;bcd234&#39;, &#39;cde345&#39;, ...]</span>
+<span class="k">print</span> <span class="n">results</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span> <span class="c1"># [&#39;abc123&#39;, &#39;bcd234&#39;, &#39;cde345&#39;, ...]</span>
+</pre></div>
+</div>
+<dl class="attribute">
+<dt id="giraffez.types.Result.columns">
+<code class="descname">columns</code><a class="headerlink" href="#giraffez.types.Result.columns" title="Permalink to this definition">¶</a></dt>
+<dd><p>The column data for the corresponding rows</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><a class="reference internal" href="#giraffez.types.Columns" title="giraffez.types.Columns"><code class="xref py py-class docutils literal"><span class="pre">Columns</span></code></a></td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="giraffez.types.Result.first">
+<code class="descname">first</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#giraffez.types.Result.first" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return the first row (or <cite>None</cite>) if no rows in result</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">The first row in the results</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body"><a class="reference internal" href="#giraffez.types.Row" title="giraffez.types.Row"><code class="xref py py-class docutils literal"><span class="pre">Row</span></code></a></td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="giraffez.types.Result.rows">
+<code class="descname">rows</code><a class="headerlink" href="#giraffez.types.Result.rows" title="Permalink to this definition">¶</a></dt>
+<dd><p>The returned row data</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">a list of rows
+(ordered corresponding to <a class="reference internal" href="#giraffez.types.Result.columns" title="giraffez.types.Result.columns"><code class="xref py py-meth docutils literal"><span class="pre">columns()</span></code></a>)</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body">list of <a class="reference internal" href="#giraffez.types.Row" title="giraffez.types.Row"><code class="xref py py-class docutils literal"><span class="pre">Row</span></code></a></td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="giraffez.types.Results">
+<em class="property">class </em><code class="descclassname">giraffez.types.</code><code class="descname">Results</code><span class="sig-paren">(</span><em>results=[]</em><span class="sig-paren">)</span><a class="headerlink" href="#giraffez.types.Results" title="Permalink to this definition">¶</a></dt>
+<dd><p>A set of <a class="reference internal" href="#giraffez.types.Result" title="giraffez.types.Result"><code class="xref py py-class docutils literal"><span class="pre">Result</span></code></a> objects returned by queries</p>
+<p>Defines the <cite>__iter__</cite> magic method for convenience:</p>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="n">results</span> <span class="o">=</span> <span class="n">cli</span><span class="o">.</span><span class="n">execute_many</span><span class="p">(</span><span class="s1">&#39;&#39;&#39;select * from table_a;</span>
+<span class="s1">    select * from table_b;&#39;&#39;&#39;</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">result</span> <span class="ow">in</span> <span class="n">results</span><span class="p">:</span>
+    <span class="k">print</span> <span class="n">result</span><span class="o">.</span><span class="n">rows</span>
+</pre></div>
+</div>
+<p>Defines the <cite>__getitem__</cite> magic method to allow numeric indexing:</p>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="n">results</span> <span class="o">=</span> <span class="n">cli</span><span class="o">.</span><span class="n">execute_many</span><span class="p">(</span><span class="s1">&#39;&#39;&#39;select * from table_a;</span>
+<span class="s1">    select * from table_b;&#39;&#39;&#39;</span><span class="p">)</span>
+<span class="k">print</span> <span class="n">results</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="c1"># results from &#39;select * from table_b&#39;</span>
+</pre></div>
+</div>
+<dl class="method">
+<dt id="giraffez.types.Results.one">
+<code class="descname">one</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#giraffez.types.Results.one" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return the first result, or none if there are no result sets</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">The first result in the set</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body"><a class="reference internal" href="#giraffez.types.Result" title="giraffez.types.Result"><code class="xref py py-class docutils literal"><span class="pre">Result</span></code></a></td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="giraffez.types.Row">
+<em class="property">class </em><code class="descclassname">giraffez.types.</code><code class="descname">Row</code><span class="sig-paren">(</span><em>columns</em>, <em>row</em><span class="sig-paren">)</span><a class="headerlink" href="#giraffez.types.Row" title="Permalink to this definition">¶</a></dt>
+<dd><p>A wrapper for a single row within a <a class="reference internal" href="#giraffez.types.Result" title="giraffez.types.Result"><code class="xref py py-class docutils literal"><span class="pre">Result</span></code></a> object.</p>
+<p>Defines the <cite>__iter__</cite> magic method for convenience:</p>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="n">row</span> <span class="o">=</span> <span class="n">results</span><span class="o">.</span><span class="n">first</span><span class="p">()</span>
+<span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="n">row</span><span class="p">:</span>
+    <span class="k">print</span> <span class="n">item</span>
+</pre></div>
+</div>
+<p>Defines the <cite>__getattr__</cite> magic method to return a particular field:</p>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="n">row</span> <span class="o">=</span> <span class="n">results</span><span class="o">.</span><span class="n">first</span><span class="p">()</span>
+<span class="k">print</span> <span class="n">row</span><span class="o">.</span><span class="n">first_name</span> <span class="c1"># &#39;alice&#39;</span>
+
+<span class="k">for</span> <span class="n">row</span> <span class="ow">in</span> <span class="n">results</span><span class="p">:</span>
+    <span class="k">print</span> <span class="n">row</span><span class="o">.</span><span class="n">first_name</span> <span class="c1"># &#39;alice&#39;, &#39;bob&#39;, &#39;charlie&#39;, ...</span>
+</pre></div>
+</div>
+<p>Defines the <cite>__getitem__</cite> magic method to return a particular field by name or numeric index:</p>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="n">row</span> <span class="o">=</span> <span class="n">results</span><span class="o">.</span><span class="n">first</span><span class="p">()</span>
+<span class="k">print</span> <span class="n">row</span><span class="p">[</span><span class="s1">&#39;first_name&#39;</span><span class="p">]</span> <span class="c1"># &#39;alice&#39;</span>
+<span class="k">print</span> <span class="n">row</span><span class="p">[</span><span class="s1">&#39;id&#39;</span><span class="p">]</span> <span class="c1"># &#39;abc123&#39;</span>
+<span class="k">print</span> <span class="n">row</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span> <span class="c1"># &#39;abc123&#39;</span>
+</pre></div>
+</div>
+</dd></dl>
+
+</div>
+<div class="section" id="module-giraffez.encoders">
+<span id="giraffez-encoders-module"></span><h3>giraffez.encoders module<a class="headerlink" href="#module-giraffez.encoders" title="Permalink to this headline">¶</a></h3>
+<dl class="function">
+<dt id="giraffez.encoders.unpack">
+<code class="descclassname">giraffez.encoders.</code><code class="descname">unpack</code><span class="sig-paren">(</span><em>fmt</em>, <em>data</em><span class="sig-paren">)</span><a class="headerlink" href="#giraffez.encoders.unpack" title="Permalink to this definition">¶</a></dt>
+<dd><p>Unpack binary data based on struct format string. Simulates
+reading from a file-like object by slicing the data string that is
+returned.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">At tuple of (unpacked value, remaining data)</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body">tuple</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="giraffez.encoders.unpack_from">
+<code class="descclassname">giraffez.encoders.</code><code class="descname">unpack_from</code><span class="sig-paren">(</span><em>fmt</em>, <em>data</em><span class="sig-paren">)</span><a class="headerlink" href="#giraffez.encoders.unpack_from" title="Permalink to this definition">¶</a></dt>
+<dd><p>Unpack binary data based on struct format string. Simulates
+reading from a file-like object by slicing the data string that is
+returned. Differs from <a class="reference internal" href="#giraffez.encoders.unpack" title="giraffez.encoders.unpack"><code class="xref py py-func docutils literal"><span class="pre">unpack()</span></code></a> because it assumes a packed
+value represents the length of a variable-length value that
+follows.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">At tuple of (unpacked value, remaining data)</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body">tuple</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</div>
+<div class="section" id="module-giraffez.errors">
+<span id="giraffez-errors-module"></span><h3>giraffez.errors module<a class="headerlink" href="#module-giraffez.errors" title="Permalink to this headline">¶</a></h3>
+<dl class="exception">
+<dt id="giraffez.errors.CannotReleaseMultiLoad">
+<em class="property">exception </em><code class="descclassname">giraffez.errors.</code><code class="descname">CannotReleaseMultiLoad</code><span class="sig-paren">(</span><em>message</em>, <em>code=None</em><span class="sig-paren">)</span><a class="headerlink" href="#giraffez.errors.CannotReleaseMultiLoad" title="Permalink to this definition">¶</a></dt>
+<dd><p>Raised when MultiLoad cannot be released because it is in the
+apply phase.</p>
+<dl class="attribute">
+<dt id="giraffez.errors.CannotReleaseMultiLoad.code">
+<code class="descname">code</code><em class="property"> = 2572</em><a class="headerlink" href="#giraffez.errors.CannotReleaseMultiLoad.code" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="exception">
+<dt id="giraffez.errors.ConfigNotFound">
+<em class="property">exception </em><code class="descclassname">giraffez.errors.</code><code class="descname">ConfigNotFound</code><a class="headerlink" href="#giraffez.errors.ConfigNotFound" title="Permalink to this definition">¶</a></dt>
+<dd><p>Raised when the specified configuration file does not exist.</p>
+</dd></dl>
+
+<dl class="exception">
+<dt id="giraffez.errors.ConfigReadOnly">
+<em class="property">exception </em><code class="descclassname">giraffez.errors.</code><code class="descname">ConfigReadOnly</code><a class="headerlink" href="#giraffez.errors.ConfigReadOnly" title="Permalink to this definition">¶</a></dt>
+<dd><p>Raised when a write is attempted on a configuration file was opened
+in read mode.</p>
+</dd></dl>
+
+<dl class="exception">
+<dt id="giraffez.errors.ConfigurationError">
+<em class="property">exception </em><code class="descclassname">giraffez.errors.</code><code class="descname">ConfigurationError</code><a class="headerlink" href="#giraffez.errors.ConfigurationError" title="Permalink to this definition">¶</a></dt>
+<dd><p>For use with configuration file handling.</p>
+</dd></dl>
+
+<dl class="exception">
+<dt id="giraffez.errors.ConnectionLock">
+<em class="property">exception </em><code class="descclassname">giraffez.errors.</code><code class="descname">ConnectionLock</code><span class="sig-paren">(</span><em>dsn</em><span class="sig-paren">)</span><a class="headerlink" href="#giraffez.errors.ConnectionLock" title="Permalink to this definition">¶</a></dt>
+<dd><p>Raised when connection is locked by invalid attempts and the
+&#8216;protect&#8217; feature is being used.</p>
+</dd></dl>
+
+<dl class="exception">
+<dt id="giraffez.errors.FileNotFound">
+<em class="property">exception </em><code class="descclassname">giraffez.errors.</code><code class="descname">FileNotFound</code><a class="headerlink" href="#giraffez.errors.FileNotFound" title="Permalink to this definition">¶</a></dt>
+<dd><p>Raised when file does not exist.</p>
+</dd></dl>
+
+<dl class="exception">
+<dt id="giraffez.errors.GeneralError">
+<em class="property">exception </em><code class="descclassname">giraffez.errors.</code><code class="descname">GeneralError</code><a class="headerlink" href="#giraffez.errors.GeneralError" title="Permalink to this definition">¶</a></dt>
+<dd><p>General giraffez error.</p>
+</dd></dl>
+
+<dl class="exception">
+<dt id="giraffez.errors.GiraffeEncodeError">
+<em class="property">exception </em><code class="descclassname">giraffez.errors.</code><code class="descname">GiraffeEncodeError</code><a class="headerlink" href="#giraffez.errors.GiraffeEncodeError" title="Permalink to this definition">¶</a></dt>
+<dd><p>Raised when unable to encode the provided object.</p>
+</dd></dl>
+
+<dl class="exception">
+<dt id="giraffez.errors.GiraffeError">
+<em class="property">exception </em><code class="descclassname">giraffez.errors.</code><code class="descname">GiraffeError</code><a class="headerlink" href="#giraffez.errors.GiraffeError" title="Permalink to this definition">¶</a></dt>
+<dd><p>Baseclass for all giraffez errors.</p>
+</dd></dl>
+
+<dl class="exception">
+<dt id="giraffez.errors.GiraffeNotFound">
+<em class="property">exception </em><code class="descclassname">giraffez.errors.</code><code class="descname">GiraffeNotFound</code><a class="headerlink" href="#giraffez.errors.GiraffeNotFound" title="Permalink to this definition">¶</a></dt>
+<dd><p>Raised when giraffez C module not found.</p>
+</dd></dl>
+
+<dl class="exception">
+<dt id="giraffez.errors.GiraffeTypeError">
+<em class="property">exception </em><code class="descclassname">giraffez.errors.</code><code class="descname">GiraffeTypeError</code><a class="headerlink" href="#giraffez.errors.GiraffeTypeError" title="Permalink to this definition">¶</a></dt>
+<dd><p>Baseclass for all giraffez type errors.</p>
+</dd></dl>
+
+<dl class="exception">
+<dt id="giraffez.errors.InvalidCredentialsError">
+<em class="property">exception </em><code class="descclassname">giraffez.errors.</code><code class="descname">InvalidCredentialsError</code><span class="sig-paren">(</span><em>message</em>, <em>code=None</em><span class="sig-paren">)</span><a class="headerlink" href="#giraffez.errors.InvalidCredentialsError" title="Permalink to this definition">¶</a></dt>
+<dd><p>Raised when connection credentials are incorrect.</p>
+<dl class="attribute">
+<dt id="giraffez.errors.InvalidCredentialsError.code">
+<code class="descname">code</code><em class="property"> = 8017</em><a class="headerlink" href="#giraffez.errors.InvalidCredentialsError.code" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="exception">
+<dt id="giraffez.errors.KeyNotFound">
+<em class="property">exception </em><code class="descclassname">giraffez.errors.</code><code class="descname">KeyNotFound</code><a class="headerlink" href="#giraffez.errors.KeyNotFound" title="Permalink to this definition">¶</a></dt>
+<dd><p>Raised when the specified configuration file does not exist.</p>
+</dd></dl>
+
+<dl class="exception">
+<dt id="giraffez.errors.MultiLoadError">
+<em class="property">exception </em><code class="descclassname">giraffez.errors.</code><code class="descname">MultiLoadError</code><span class="sig-paren">(</span><em>message</em>, <em>code=None</em><span class="sig-paren">)</span><a class="headerlink" href="#giraffez.errors.MultiLoadError" title="Permalink to this definition">¶</a></dt>
+<dd><p>General MultiLoad error class.</p>
+</dd></dl>
+
+<dl class="exception">
+<dt id="giraffez.errors.MultiLoadLocked">
+<em class="property">exception </em><code class="descclassname">giraffez.errors.</code><code class="descname">MultiLoadLocked</code><span class="sig-paren">(</span><em>message</em>, <em>code=None</em><span class="sig-paren">)</span><a class="headerlink" href="#giraffez.errors.MultiLoadLocked" title="Permalink to this definition">¶</a></dt>
+<dd><p>Raised when MultiLoad appears to be locked. Used to determine when
+MultiLoad should be released.</p>
+</dd></dl>
+
+<dl class="exception">
+<dt id="giraffez.errors.MultiLoadTableExists">
+<em class="property">exception </em><code class="descclassname">giraffez.errors.</code><code class="descname">MultiLoadTableExists</code><span class="sig-paren">(</span><em>message</em>, <em>code=None</em><span class="sig-paren">)</span><a class="headerlink" href="#giraffez.errors.MultiLoadTableExists" title="Permalink to this definition">¶</a></dt>
+<dd><p>Raised when MultiLoad worktables exist.</p>
+<dl class="attribute">
+<dt id="giraffez.errors.MultiLoadTableExists.code">
+<code class="descname">code</code><em class="property"> = 2574</em><a class="headerlink" href="#giraffez.errors.MultiLoadTableExists.code" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="exception">
+<dt id="giraffez.errors.MultiLoadWorkTableNotFound">
+<em class="property">exception </em><code class="descclassname">giraffez.errors.</code><code class="descname">MultiLoadWorkTableNotFound</code><span class="sig-paren">(</span><em>message</em>, <em>code=None</em><span class="sig-paren">)</span><a class="headerlink" href="#giraffez.errors.MultiLoadWorkTableNotFound" title="Permalink to this definition">¶</a></dt>
+<dd><p>Raised when MultiLoad worktable is missing during restart.</p>
+<dl class="attribute">
+<dt id="giraffez.errors.MultiLoadWorkTableNotFound.code">
+<code class="descname">code</code><em class="property"> = 2583</em><a class="headerlink" href="#giraffez.errors.MultiLoadWorkTableNotFound.code" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="exception">
+<dt id="giraffez.errors.ObjectDoesNotExist">
+<em class="property">exception </em><code class="descclassname">giraffez.errors.</code><code class="descname">ObjectDoesNotExist</code><span class="sig-paren">(</span><em>message</em>, <em>code=None</em><span class="sig-paren">)</span><a class="headerlink" href="#giraffez.errors.ObjectDoesNotExist" title="Permalink to this definition">¶</a></dt>
+<dd><p>Teradata object does not exist.</p>
+<dl class="attribute">
+<dt id="giraffez.errors.ObjectDoesNotExist.code">
+<code class="descname">code</code><em class="property"> = 3807</em><a class="headerlink" href="#giraffez.errors.ObjectDoesNotExist.code" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="exception">
+<dt id="giraffez.errors.ObjectNotTable">
+<em class="property">exception </em><code class="descclassname">giraffez.errors.</code><code class="descname">ObjectNotTable</code><span class="sig-paren">(</span><em>message</em>, <em>code=None</em><span class="sig-paren">)</span><a class="headerlink" href="#giraffez.errors.ObjectNotTable" title="Permalink to this definition">¶</a></dt>
+<dd><p>Teradata object not a table.</p>
+<dl class="attribute">
+<dt id="giraffez.errors.ObjectNotTable.code">
+<code class="descname">code</code><em class="property"> = 3853</em><a class="headerlink" href="#giraffez.errors.ObjectNotTable.code" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="exception">
+<dt id="giraffez.errors.ObjectNotView">
+<em class="property">exception </em><code class="descclassname">giraffez.errors.</code><code class="descname">ObjectNotView</code><span class="sig-paren">(</span><em>message</em>, <em>code=None</em><span class="sig-paren">)</span><a class="headerlink" href="#giraffez.errors.ObjectNotView" title="Permalink to this definition">¶</a></dt>
+<dd><p>Teradata object not a view.</p>
+<dl class="attribute">
+<dt id="giraffez.errors.ObjectNotView.code">
+<code class="descname">code</code><em class="property"> = 3854</em><a class="headerlink" href="#giraffez.errors.ObjectNotView.code" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="exception">
+<dt id="giraffez.errors.TeradataError">
+<em class="property">exception </em><code class="descclassname">giraffez.errors.</code><code class="descname">TeradataError</code><span class="sig-paren">(</span><em>message</em>, <em>code=None</em><span class="sig-paren">)</span><a class="headerlink" href="#giraffez.errors.TeradataError" title="Permalink to this definition">¶</a></dt>
+<dd><p>Baseclass for all Teradata errors. This exception represents any
+error that originates from Teradata CLIv2/TPTAPI.</p>
+<p>This will attempt to parse error codes from the message in the case
+that the error is a Teradata CLIv2 error.</p>
+</dd></dl>
+
+<dl class="exception">
+<dt id="giraffez.errors.TransactionAborted">
+<em class="property">exception </em><code class="descclassname">giraffez.errors.</code><code class="descname">TransactionAborted</code><span class="sig-paren">(</span><em>message</em>, <em>code=None</em><span class="sig-paren">)</span><a class="headerlink" href="#giraffez.errors.TransactionAborted" title="Permalink to this definition">¶</a></dt>
+<dd><p>Teradata transaction aborted.</p>
+<dl class="attribute">
+<dt id="giraffez.errors.TransactionAborted.code">
+<code class="descname">code</code><em class="property"> = 2631</em><a class="headerlink" href="#giraffez.errors.TransactionAborted.code" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</div>
+</div>
+<div class="section" id="api-usage-examples">
+<h2>API Usage Examples<a class="headerlink" href="#api-usage-examples" title="Permalink to this headline">¶</a></h2>
+<p>In all of the following examples, assume <code class="code docutils literal"><span class="pre">import</span> <span class="pre">giraffez</span></code> is present in the
+script before the snippet being run.</p>
+<div class="section" id="export">
+<h3>Export<a class="headerlink" href="#export" title="Permalink to this headline">¶</a></h3>
+<p>Export a table/view:</p>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="k">with</span> <span class="n">giraffez</span><span class="o">.</span><span class="n">Export</span><span class="p">(</span><span class="s1">&#39;dbc.dbcinfo&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">export</span><span class="p">:</span>
+    <span class="k">for</span> <span class="n">row</span> <span class="ow">in</span> <span class="n">export</span><span class="o">.</span><span class="n">results</span><span class="p">():</span>
+        <span class="k">print</span><span class="p">(</span><span class="n">row</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Export a table and silence log output:</p>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="k">with</span> <span class="n">giraffez</span><span class="o">.</span><span class="n">Export</span><span class="p">(</span><span class="s1">&#39;dbc.dbcinfo&#39;</span><span class="p">,</span> <span class="n">log_level</span><span class="o">=</span><span class="n">giraffez</span><span class="o">.</span><span class="n">SILENCE</span><span class="p">)</span> <span class="k">as</span> <span class="n">export</span><span class="p">:</span>
+    <span class="k">for</span> <span class="n">row</span> <span class="ow">in</span> <span class="n">export</span><span class="o">.</span><span class="n">results</span><span class="p">():</span>
+        <span class="k">print</span><span class="p">(</span><span class="n">row</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Export a query, print header, and change delimiter:</p>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="k">with</span> <span class="n">giraffez</span><span class="o">.</span><span class="n">Export</span><span class="p">(</span><span class="s1">&#39;select * from dbc.dbcinfo&#39;</span><span class="p">,</span> <span class="n">delimiter</span><span class="o">=</span><span class="s1">&#39;,&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">export</span><span class="p">:</span>
+    <span class="k">print</span><span class="p">(</span><span class="n">export</span><span class="o">.</span><span class="n">header</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">row</span> <span class="ow">in</span> <span class="n">export</span><span class="o">.</span><span class="n">results</span><span class="p">():</span>
+        <span class="k">print</span><span class="p">(</span><span class="n">row</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Write results as a CSV (quoting fields):</p>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="k">with</span> <span class="n">giraffez</span><span class="o">.</span><span class="n">Export</span><span class="p">(</span><span class="s1">&#39;database.table_name&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">export</span><span class="p">:</span>
+    <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s2">&quot;output.csv&quot;</span><span class="p">,</span> <span class="s2">&quot;wb&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+        <span class="n">header</span> <span class="o">=</span> <span class="s2">&quot;,&quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">export</span><span class="o">.</span><span class="n">columns</span><span class="o">.</span><span class="n">names</span><span class="p">)</span>
+        <span class="n">f</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s2">&quot;{0}</span><span class="se">\n</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">header</span><span class="p">))</span>
+        <span class="k">for</span> <span class="n">row</span> <span class="ow">in</span> <span class="n">export</span><span class="o">.</span><span class="n">results</span><span class="p">():</span>
+            <span class="n">fields</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;&quot;{0}&quot;&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">row</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot;|&quot;</span><span class="p">)]</span>
+            <span class="n">f</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s2">&quot;{0}</span><span class="se">\n</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="s2">&quot;,&quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">fields</span><span class="p">)))</span>
+</pre></div>
+</div>
+<p>Write results as JSON:</p>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="k">with</span> <span class="n">giraffez</span><span class="o">.</span><span class="n">Export</span><span class="p">(</span><span class="s1">&#39;database.table_name&#39;</span><span class="p">,</span> <span class="n">encoding</span><span class="o">=</span><span class="s1">&#39;json&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">export</span><span class="p">:</span>
+    <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s2">&quot;output.json&quot;</span><span class="p">,</span> <span class="s2">&quot;wb&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+        <span class="c1"># Each row is a JSON encoded string</span>
+        <span class="k">for</span> <span class="n">row</span> <span class="ow">in</span> <span class="n">export</span><span class="o">.</span><span class="n">results</span><span class="p">():</span>
+            <span class="n">f</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s2">&quot;{0}</span><span class="se">\n</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">row</span><span class="p">))</span>
+</pre></div>
+</div>
+<p>Export data directly into pandas:</p>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="k">with</span> <span class="n">giraffez</span><span class="o">.</span><span class="n">Export</span><span class="p">()</span> <span class="k">as</span> <span class="n">export</span><span class="p">:</span>
+    <span class="n">export</span><span class="o">.</span><span class="n">encoding</span> <span class="o">=</span> <span class="s2">&quot;dict&quot;</span>
+    <span class="n">export</span><span class="o">.</span><span class="n">query</span> <span class="o">=</span> <span class="s2">&quot;select infokey, character_length(infodata) from dbc.dbcinfo&quot;</span>
+    <span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">export</span><span class="o">.</span><span class="n">results</span><span class="p">())</span>
+    <span class="k">print</span><span class="p">(</span><span class="n">df</span><span class="p">)</span>
+    <span class="k">print</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">mean</span><span class="p">())</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="cmd">
+<h3>Cmd<a class="headerlink" href="#cmd" title="Permalink to this headline">¶</a></h3>
+<p>Simple select statement:</p>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="k">with</span> <span class="n">giraffez</span><span class="o">.</span><span class="n">Cmd</span><span class="p">()</span> <span class="k">as</span> <span class="n">cmd</span><span class="p">:</span>
+    <span class="n">cmd</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="s2">&quot;select * from dbc.dbcinfo&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Execute multiple SQL statements at a time:</p>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="k">with</span> <span class="n">giraffez</span><span class="o">.</span><span class="n">Cmd</span><span class="p">()</span> <span class="k">as</span> <span class="n">cmd</span><span class="p">:</span>
+    <span class="c1"># Or cmd.execute_many(...)</span>
+    <span class="n">results</span> <span class="o">=</span> <span class="n">cmd</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">        select * from dbc.dbcinfo;</span>
+<span class="s2">        select * from dbc.tables;</span>
+<span class="s2">    &quot;&quot;&quot;</span><span class="p">)</span>
+
+    <span class="c1"># Loop through results</span>
+
+    <span class="k">for</span> <span class="n">result</span> <span class="ow">in</span> <span class="n">results</span><span class="p">:</span>
+        <span class="k">print</span><span class="p">(</span><span class="s2">&quot;Query Results:&quot;</span><span class="p">)</span>
+        <span class="k">for</span> <span class="n">row</span> <span class="ow">in</span> <span class="n">result</span><span class="p">:</span>
+            <span class="k">print</span><span class="p">(</span><span class="n">row</span><span class="p">)</span>
+
+    <span class="c1"># First result of first query</span>
+
+    <span class="k">print</span><span class="p">(</span><span class="n">results</span><span class="o">.</span><span class="n">one</span><span class="p">()</span><span class="o">.</span><span class="n">first</span><span class="p">())</span>
+</pre></div>
+</div>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="k">with</span> <span class="n">giraffez</span><span class="o">.</span><span class="n">Cmd</span><span class="p">()</span> <span class="k">as</span> <span class="n">cmd</span><span class="p">:</span>
+    <span class="n">result</span> <span class="o">=</span> <span class="n">cmd</span><span class="o">.</span><span class="n">execute_one</span><span class="p">(</span><span class="s2">&quot;select * from dbc.tables&quot;</span><span class="p">)</span>
+
+    <span class="c1"># Result stores the columns as a ColumnList object</span>
+
+    <span class="k">print</span><span class="p">(</span><span class="n">result</span><span class="o">.</span><span class="n">columns</span><span class="p">)</span>
+
+    <span class="c1"># Iterate and inspect column/column types</span>
+
+    <span class="k">for</span> <span class="n">column</span> <span class="ow">in</span> <span class="n">result</span><span class="o">.</span><span class="n">columns</span><span class="p">:</span>
+        <span class="k">print</span><span class="p">(</span><span class="n">column</span><span class="p">,</span> <span class="n">column</span><span class="o">.</span><span class="n">type</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Results of queries are Python objects (i.e. <code class="xref py py-class docutils literal"><span class="pre">datetime</span></code>, <code class="xref py py-class docutils literal"><span class="pre">int</span></code>, <code class="xref py py-class docutils literal"><span class="pre">str</span></code>):</p>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">datetime</span>
+
+<span class="k">with</span> <span class="n">giraffez</span><span class="o">.</span><span class="n">Cmd</span><span class="p">()</span> <span class="k">as</span> <span class="n">cmd</span><span class="p">:</span>
+    <span class="n">result</span> <span class="o">=</span> <span class="n">cmd</span><span class="o">.</span><span class="n">execute_one</span><span class="p">(</span><span class="s2">&quot;select max(load_dt) from dbc.dbcinfo&quot;</span><span class="p">)</span> <span class="c1"># or execute(...).one()</span>
+
+    <span class="c1"># Get the first row from the Result object</span>
+
+    <span class="n">row</span> <span class="o">=</span> <span class="n">result</span><span class="o">.</span><span class="n">first</span><span class="p">()</span>
+    <span class="n">time_since_latest</span> <span class="o">=</span> <span class="n">datetime</span><span class="o">.</span><span class="n">datetime</span><span class="o">.</span><span class="n">now</span><span class="p">()</span> <span class="o">-</span> <span class="n">row</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+    <span class="k">print</span><span class="p">(</span><span class="n">time_since_latest</span><span class="p">)</span>
+    <span class="c1"># 7 days, 15:05:26.236456</span>
+
+    <span class="n">result</span> <span class="o">=</span> <span class="n">cmd</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="s2">&quot;select field, count(*) from database.table_name group by field&quot;</span><span class="p">)</span>
+
+    <span class="c1"># Further aggregation</span>
+
+    <span class="n">total</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="k">for</span> <span class="n">row</span> <span class="ow">in</span> <span class="n">result</span><span class="p">:</span>
+        <span class="k">print</span><span class="p">(</span><span class="n">row</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">row</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+        <span class="n">total</span> <span class="o">+=</span> <span class="n">row</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+    <span class="k">print</span><span class="p">(</span><span class="s2">&quot;Total: {0}&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">total</span><span class="p">))</span>
+</pre></div>
+</div>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="k">with</span> <span class="n">giraffez</span><span class="o">.</span><span class="n">Cmd</span><span class="p">()</span> <span class="k">as</span> <span class="n">cmd</span><span class="p">:</span>
+    <span class="n">result</span> <span class="o">=</span> <span class="n">cmd</span><span class="o">.</span><span class="n">execute_one</span><span class="p">(</span><span class="s2">&quot;select top 50 * from database.table_name&quot;</span><span class="p">)</span>
+    <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s2">&quot;output.csv&quot;</span><span class="p">,</span> <span class="s2">&quot;wb&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+        <span class="n">header</span> <span class="o">=</span> <span class="s2">&quot;,&quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">result</span><span class="o">.</span><span class="n">columns</span><span class="o">.</span><span class="n">names</span><span class="p">)</span>
+        <span class="n">f</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s2">&quot;{0}</span><span class="se">\n</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">header</span><span class="p">))</span>
+        <span class="k">for</span> <span class="n">row</span> <span class="ow">in</span> <span class="n">result</span><span class="p">:</span>
+            <span class="n">fields</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;&quot;{0}&quot;&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">row</span><span class="p">]</span>
+            <span class="n">f</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s2">&quot;{0}</span><span class="se">\n</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="s2">&quot;,&quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">fields</span><span class="p">)))</span>
+</pre></div>
+</div>
+<p>In the same <code class="docutils literal"><span class="pre">with</span></code> context block, the same connection to Teradata is used.
+That means that if you are operating on volatile tables, you must perform all
+queries within the same &#8220;session&#8221;:</p>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="k">with</span> <span class="n">giraffez</span><span class="o">.</span><span class="n">Cmd</span><span class="p">()</span> <span class="k">as</span> <span class="n">cmd</span><span class="p">:</span>
+    <span class="n">cmd</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="s2">&quot;create volatile table table_name (id INTEGER, name VARCHAR(30)) with data on commit preserve rows&quot;</span><span class="p">)</span>
+    <span class="c1"># ...</span>
+
+    <span class="c1"># Same session as &quot;create volatile table&quot; statement</span>
+    <span class="n">cmd</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="s2">&quot;select * from table_name&quot;</span><span class="p">)</span>
+
+
+<span class="c1"># In a separate session, volatile table will not exist</span>
+<span class="k">with</span> <span class="n">giraffez</span><span class="o">.</span><span class="n">Cmd</span><span class="p">()</span> <span class="k">as</span> <span class="n">cmd</span><span class="p">:</span>
+    <span class="n">cmd</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="s2">&quot;select * from table_name&quot;</span><span class="p">)</span> <span class="c1"># raises ObjectDoesNotExist</span>
+</pre></div>
+</div>
+<p>Some statements in Teradata SQL (e.g. create table, drop table, collect stats) are not allowed to follow others in the same
+command. When a query should be split by statement and each executed independently within the same session, use the
+<code class="xref py py-meth docutils literal"><span class="pre">execute_many()</span></code> method:</p>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="k">with</span> <span class="n">giraffez</span><span class="o">.</span><span class="n">Cmd</span><span class="p">()</span> <span class="k">as</span> <span class="n">cmd</span><span class="p">:</span>
+    <span class="n">results</span> <span class="o">=</span> <span class="n">cmd</span><span class="o">.</span><span class="n">execute_many</span><span class="p">(</span><span class="s2">&quot;&quot;&quot;create volatile table table_name (</span>
+<span class="s2">        id           INTEGER,</span>
+<span class="s2">        first_name   VARCHAR(30),</span>
+<span class="s2">        last_name    VARCHAR(30)</span>
+<span class="s2">    ) on commit preserve rows;</span>
+<span class="s2">    -- Comments are stripped</span>
+<span class="s2">    insert into table_name (first_name, last_name) values (&#39;peter&#39;, &#39;parker&#39;);</span>
+<span class="s2">    insert into table_name (first_name, last_name) values (&#39;bruce&#39;, &#39;wayne&#39;);</span>
+
+<span class="s2">    select id, first_name from table_name;&quot;&quot;&quot;</span><span class="p">)</span>
+
+    <span class="c1"># All results are returned. The query was 4 statements,</span>
+    <span class="c1">#  so 4 giraffez.Result objects are returned.</span>
+    <span class="k">for</span> <span class="n">result</span> <span class="ow">in</span> <span class="n">results</span><span class="p">:</span>
+        <span class="k">print</span> <span class="n">result</span>
+</pre></div>
+</div>
+<p>This is equivalent to manually separating the statements in your query and
+running them using <code class="xref py py-meth docutils literal"><span class="pre">execute()</span></code> within the same session (<code class="docutils literal"><span class="pre">with</span></code>
+context). <strong>Note that</strong> <code class="xref py py-meth docutils literal"><span class="pre">execute()</span></code> <strong>sends the query to be executed
+to Teradata in &#8220;blocks&#8221;, rather than statements, which is why certain statements
+are not allowed among others when using this method.</strong></p>
+</div>
+<div class="section" id="load">
+<h3>Load<a class="headerlink" href="#load" title="Permalink to this headline">¶</a></h3>
+<p><code class="xref py py-class docutils literal"><span class="pre">giraffez.Load</span></code> is a subclass of <code class="xref py py-class docutils literal"><span class="pre">giraffez.Cmd</span></code>.</p>
+<p>Load into a table (quickly!) from a file:</p>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="k">with</span> <span class="n">giraffez</span><span class="o">.</span><span class="n">Load</span><span class="p">()</span> <span class="k">as</span> <span class="n">load</span><span class="p">:</span>
+    <span class="n">stats</span> <span class="o">=</span> <span class="n">load</span><span class="o">.</span><span class="n">from_file</span><span class="p">(</span><span class="s1">&#39;database.table_name&#39;</span><span class="p">,</span> <span class="s1">&#39;my_data.txt&#39;</span><span class="p">)</span>
+    <span class="k">print</span><span class="p">(</span><span class="n">stats</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Create a temp table, insert from Python:</p>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="k">with</span> <span class="n">giraffez</span><span class="o">.</span><span class="n">Load</span><span class="p">()</span> <span class="k">as</span> <span class="n">load</span><span class="p">:</span>
+    <span class="n">load</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="s2">&quot;&quot;&quot;create multiset volatile table temp_table (</span>
+<span class="s2">        first_name varchar(50),</span>
+<span class="s2">        last_name varchar(50),</span>
+<span class="s2">        email varchar(100)</span>
+<span class="s2">    ) primary index (first_name, last_name) on commit preserve rows&quot;&quot;&quot;</span><span class="p">)</span>
+
+    <span class="c1"># Insert into all columns</span>
+
+    <span class="n">stats</span> <span class="o">=</span> <span class="n">load</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span><span class="s1">&#39;temp_table&#39;</span><span class="p">,</span> <span class="p">[(</span><span class="s1">&#39;bruce&#39;</span><span class="p">,</span> <span class="s1">&#39;wayne&#39;</span><span class="p">,</span> <span class="s1">&#39;batman@wayne.co&#39;</span><span class="p">)])</span>
+    <span class="k">print</span><span class="p">(</span><span class="n">stats</span><span class="p">)</span>
+
+    <span class="c1"># Insert into a subset of columns</span>
+
+    <span class="n">stats</span> <span class="o">=</span> <span class="n">load</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span><span class="s1">&#39;temp_table&#39;</span><span class="p">,</span> <span class="p">[</span>
+            <span class="p">(</span><span class="s1">&#39;peter&#39;</span><span class="p">,</span> <span class="s1">&#39;parker&#39;</span><span class="p">),</span>
+            <span class="p">(</span><span class="s1">&#39;clark&#39;</span><span class="p">,</span> <span class="s1">&#39;kent&#39;</span><span class="p">)</span>
+        <span class="p">],</span> <span class="n">fields</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;first_name&#39;</span><span class="p">,</span> <span class="s1">&#39;last_name&#39;</span><span class="p">])</span>
+    <span class="k">print</span><span class="p">(</span><span class="n">stats</span><span class="p">)</span>
+
+    <span class="k">print</span><span class="p">(</span><span class="n">load</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="s2">&quot;select * from temp_table&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">first</span><span class="p">())</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="config">
+<h3>Config<a class="headerlink" href="#config" title="Permalink to this headline">¶</a></h3>
+<p>The <code class="xref py py-class docutils literal"><span class="pre">giraffez.Config</span></code> class is a convenient wrapper for accessing and modifying settings and credentials in your <code class="code docutils literal"><span class="pre">.girafferc</span></code> file.</p>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="k">with</span> <span class="n">giraffez</span><span class="o">.</span><span class="n">Config</span><span class="p">()</span> <span class="k">as</span> <span class="n">config</span><span class="p">:</span>
+    <span class="n">default_connection</span> <span class="o">=</span> <span class="n">config</span><span class="o">.</span><span class="n">get_value</span><span class="p">(</span><span class="s2">&quot;connections.default&quot;</span><span class="p">)</span>
+    <span class="k">print</span><span class="p">(</span><span class="n">default_connection</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="secret">
+<h3>Secret<a class="headerlink" href="#secret" title="Permalink to this headline">¶</a></h3>
+<p><code class="xref py py-class docutils literal"><span class="pre">giraffez.Secret</span></code> handles encryption and decryption of sensitive information in your <code class="code docutils literal"><span class="pre">.girafferc</span></code>, making it easy to set and retrieve these values programmatically &#8211; without risking exposure of data.</p>
+<p>Writing with <code class="xref py py-class docutils literal"><span class="pre">giraffez.Secret</span></code> is automatically encrypted:</p>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="k">with</span> <span class="n">giraffez</span><span class="o">.</span><span class="n">Secret</span><span class="p">(</span><span class="n">mode</span><span class="o">=</span><span class="s1">&#39;w&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">secret</span><span class="p">:</span>
+    <span class="n">secret</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="s2">&quot;sso.username&quot;</span><span class="p">,</span> <span class="s2">&quot;username&quot;</span><span class="p">)</span>
+    <span class="n">secret</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="s2">&quot;sso.password&quot;</span><span class="p">,</span> <span class="s2">&quot;password&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Call <code class="code docutils literal"><span class="pre">secret</span></code> with the paths to values you want to retrieve. This is an effective way to manage frequently used information that should be kept private:</p>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">os</span>
+<span class="kn">import</span> <span class="nn">sys</span>
+
+<span class="kn">import</span> <span class="nn">requests</span>
+
+<span class="k">with</span> <span class="n">giraffez</span><span class="o">.</span><span class="n">Secret</span><span class="p">()</span> <span class="k">as</span> <span class="n">secret</span><span class="p">:</span>
+    <span class="n">sso_username</span><span class="p">,</span> <span class="n">sso_password</span> <span class="o">=</span> <span class="n">secret</span><span class="p">(</span><span class="s2">&quot;sso.username, sso.password&quot;</span><span class="p">)</span>
+
+<span class="n">proxy_url</span> <span class="o">=</span> <span class="s2">&quot;https://{0}:{1}@proxy.example.com&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">sso_username</span><span class="p">,</span> <span class="n">sso_password</span><span class="p">)</span>
+<span class="n">r</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;https://www.google.com&quot;</span><span class="p">,</span> <span class="n">proxies</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;http&quot;</span><span class="p">:</span> <span class="n">proxy_url</span><span class="p">,</span> <span class="s2">&quot;https&quot;</span><span class="p">:</span> <span class="n">proxy_url</span><span class="p">})</span>
+<span class="k">print</span><span class="p">(</span><span class="n">r</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="n">r</span><span class="o">.</span><span class="n">text</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="mload">
+<h3>MLoad<a class="headerlink" href="#mload" title="Permalink to this headline">¶</a></h3>
+<p><code class="xref py py-class docutils literal"><span class="pre">giraffez.MLoad</span></code> is best utilized for loading large (&gt; ~100k rows) datasets. It makes use of the TPTAPI Update driver which is generally slower than <code class="xref py py-class docutils literal"><span class="pre">giraffez.Load</span></code> (which uses CLIv2) for small data sets, and has a larger performance impact on Teradata.</p>
+<p>When loading a file, fields and delimiter for the input data are inferred from the header:</p>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="k">with</span> <span class="n">giraffez</span><span class="o">.</span><span class="n">MLoad</span><span class="p">(</span><span class="s2">&quot;database.table_name&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">mload</span><span class="p">:</span>
+    <span class="n">exit_code</span> <span class="o">=</span> <span class="n">mload</span><span class="o">.</span><span class="n">from_file</span><span class="p">(</span><span class="s2">&quot;input.txt&quot;</span><span class="p">)</span>
+    <span class="k">print</span><span class="p">(</span><span class="s2">&quot;finished load with code {0}&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">exit_code</span><span class="p">))</span>
+</pre></div>
+</div>
+<p>Loading Individual rows:</p>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="k">with</span> <span class="n">giraffez</span><span class="o">.</span><span class="n">MLoad</span><span class="p">(</span><span class="s2">&quot;database.table_name&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">mload</span><span class="p">:</span>
+    <span class="n">mload</span><span class="o">.</span><span class="n">columns</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;last_name&quot;</span><span class="p">,</span> <span class="s2">&quot;first_name&quot;</span><span class="p">]</span>
+    <span class="n">rows</span> <span class="o">=</span> <span class="p">[</span>
+        <span class="p">(</span><span class="s2">&quot;Hemingway&quot;</span><span class="p">,</span> <span class="s2">&quot;Ernest&quot;</span><span class="p">),</span>
+        <span class="p">(</span><span class="s2">&quot;Chekhov&quot;</span><span class="p">,</span> <span class="s2">&quot;Anton&quot;</span><span class="p">),</span>
+        <span class="p">(</span><span class="s2">&quot;Kafka&quot;</span><span class="p">,</span> <span class="s2">&quot;Franz&quot;</span><span class="p">)</span>
+    <span class="p">]</span>
+    <span class="k">for</span> <span class="n">row</span> <span class="ow">in</span> <span class="n">rows</span><span class="p">:</span>
+        <span class="n">mload</span><span class="o">.</span><span class="n">load_row</span><span class="p">(</span><span class="n">row</span><span class="p">)</span>
+    <span class="n">exit_code</span> <span class="o">=</span> <span class="n">mload</span><span class="o">.</span><span class="n">finish</span><span class="p">()</span>
+    <span class="k">print</span><span class="p">(</span><span class="s2">&quot;finished load with code {0}&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">exit_code</span><span class="p">))</span>
+    <span class="k">if</span> <span class="n">exit_code</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="n">mload</span><span class="o">.</span><span class="n">cleanup</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>In cases where <cite>giraffez.MLoad</cite> raises a <cite>GiraffeEncodeError</cite> and panics, the release of the table lock can be ensured by wrapping the <cite>giraffez.MLoad</cite> code with a try-except that calls <cite>giraffez.MLoad.release()</cite>:</p>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="k">with</span> <span class="n">giraffez</span><span class="o">.</span><span class="n">MLoad</span><span class="p">(</span><span class="s2">&quot;database.table_name&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">mload</span><span class="p">:</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="n">mload</span><span class="o">.</span><span class="n">columns</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;last_name&quot;</span><span class="p">,</span> <span class="s2">&quot;first_name&quot;</span><span class="p">]</span>
+        <span class="n">rows</span> <span class="o">=</span> <span class="p">[</span>
+            <span class="p">(</span><span class="s2">&quot;Hemingway&quot;</span><span class="p">,</span> <span class="s2">&quot;Ernest&quot;</span><span class="p">),</span>
+            <span class="p">(</span><span class="s2">&quot;Chekhov&quot;</span><span class="p">,</span> <span class="s2">&quot;Anton&quot;</span><span class="p">),</span>
+            <span class="p">(</span><span class="s2">&quot;Kafka&quot;</span><span class="p">,</span> <span class="s2">&quot;Franz&quot;</span><span class="p">)</span>
+        <span class="p">]</span>
+        <span class="k">for</span> <span class="n">row</span> <span class="ow">in</span> <span class="n">rows</span><span class="p">:</span>
+            <span class="n">mload</span><span class="o">.</span><span class="n">load_row</span><span class="p">(</span><span class="n">row</span><span class="p">)</span>
+        <span class="n">exit_code</span> <span class="o">=</span> <span class="n">mload</span><span class="o">.</span><span class="n">finish</span><span class="p">()</span>
+    <span class="k">except</span> <span class="n">giraffez</span><span class="o">.</span><span class="n">GiraffeEncodeError</span> <span class="k">as</span> <span class="n">error</span><span class="p">:</span>
+        <span class="n">mload</span><span class="o">.</span><span class="n">release</span><span class="p">()</span>
+        <span class="c1"># re-raise the error so that it produces the full traceback</span>
+        <span class="k">raise</span> <span class="n">error</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+
+
+           </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="FAQ.html" class="btn btn-neutral float-right" title="giraffez FAQ" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="command-line.html" class="btn btn-neutral" title="Command Line" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2016, Capital One Services, LLC.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'./',
+            VERSION:'1.0.0',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true
+        };
+    </script>
+      <script type="text/javascript" src="_static/jquery.js"></script>
+      <script type="text/javascript" src="_static/underscore.js"></script>
+      <script type="text/javascript" src="_static/doctools.js"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>
