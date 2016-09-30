@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Python API &mdash; giraffez 1.0.0 documentation</title>
+  <title>Python API &mdash; giraffez 1.0.4 documentation</title>
   
 
   
@@ -30,7 +30,7 @@
   
 
   
-    <link rel="top" title="giraffez 1.0.0 documentation" href="index.html"/>
+    <link rel="top" title="giraffez 1.0.4 documentation" href="index.html"/>
         <link rel="next" title="giraffez FAQ" href="FAQ.html"/>
         <link rel="prev" title="Command Line" href="command-line.html"/> 
 
@@ -60,7 +60,7 @@
             
             
               <div class="version">
-                1.0.0
+                1.0.4
               </div>
             
           
@@ -86,6 +86,8 @@
 <li class="toctree-l1"><a class="reference internal" href="command-line.html">Command Line</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Python API</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#setting-up-logging">Setting up logging</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#using-the-graceful-shutdown">Using the graceful shutdown</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#working-with-other-packages">Working with other packages</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#giraffez-modules">giraffez modules</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#module-giraffez.cmd">giraffez.cmd module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#module-giraffez.export">giraffez.export module</a></li>
@@ -171,6 +173,42 @@
 <span class="n">log</span> <span class="o">=</span> <span class="n">logging</span><span class="o">.</span><span class="n">getLogger</span><span class="p">(</span><span class="s2">&quot;giraffez.console_logger&quot;</span><span class="p">)</span>
 <span class="n">log</span><span class="o">.</span><span class="n">addHandler</span><span class="p">(</span><span class="o">...</span><span class="p">)</span>
 <span class="n">log</span><span class="o">.</span><span class="n">setLevel</span><span class="p">(</span><span class="n">logging</span><span class="o">.</span><span class="n">DEBUG</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="using-the-graceful-shutdown">
+<h2>Using the graceful shutdown<a class="headerlink" href="#using-the-graceful-shutdown" title="Permalink to this headline">¶</a></h2>
+<p>The signal handler used by the giraffez command-line tool is available to the API as well.  This is what allows the giraffez command to attempt closing Teradata connections down safely before exiting the process (and shutting down cold on the next Ctrl+C).  To use this add this towards the beginning of the project:</p>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">giraffez</span>
+
+<span class="n">giraffez</span><span class="o">.</span><span class="n">register_graceful_shutdown_signal</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="working-with-other-packages">
+<h2>Working with other packages<a class="headerlink" href="#working-with-other-packages" title="Permalink to this headline">¶</a></h2>
+<p>Results from <code class="xref py py-class docutils literal"><span class="pre">giraffez.Cmd</span></code> and <code class="xref py py-class docutils literal"><span class="pre">giraffez.Export</span></code> can be
+used with other packages that accept common Python data structures.</p>
+<p>Using <code class="xref py py-class docutils literal"><span class="pre">giraffez.Cmd</span></code> with pandas:</p>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">giraffez</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="kn">as</span> <span class="nn">pd</span>
+
+<span class="k">with</span> <span class="n">giraffez</span><span class="o">.</span><span class="n">Cmd</span><span class="p">()</span> <span class="k">as</span> <span class="n">cmd</span><span class="p">:</span>
+    <span class="n">result</span> <span class="o">=</span> <span class="n">cmd</span><span class="o">.</span><span class="n">execute_one</span><span class="p">(</span><span class="s2">&quot;select infokey, character_length(infodata) as charcount from dbc.dbcinfo&quot;</span><span class="p">)</span>
+    <span class="c1"># Convert a Result object to a list of dicts</span>
+    <span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">result</span><span class="o">.</span><span class="n">to_json</span><span class="p">())</span>
+    <span class="k">print</span><span class="p">(</span><span class="n">df</span><span class="p">)</span>
+    <span class="k">print</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">mean</span><span class="p">())</span>
+</pre></div>
+</div>
+<p>Using <code class="xref py py-class docutils literal"><span class="pre">giraffez.Export</span></code> with pandas:</p>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="k">with</span> <span class="n">giraffez</span><span class="o">.</span><span class="n">Export</span><span class="p">()</span> <span class="k">as</span> <span class="n">export</span><span class="p">:</span>
+    <span class="c1"># Output results as a Python dictionary</span>
+    <span class="n">export</span><span class="o">.</span><span class="n">encoding</span> <span class="o">=</span> <span class="s2">&quot;dict&quot;</span>
+    <span class="n">export</span><span class="o">.</span><span class="n">query</span> <span class="o">=</span> <span class="s2">&quot;select infokey, character_length(infodata) from dbc.dbcinfo&quot;</span>
+    <span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">export</span><span class="o">.</span><span class="n">results</span><span class="p">())</span>
+    <span class="k">print</span><span class="p">(</span><span class="n">df</span><span class="p">)</span>
+    <span class="k">print</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">mean</span><span class="p">())</span>
 </pre></div>
 </div>
 </div>
@@ -464,8 +502,9 @@ encoding. Defaults to &#8216;|&#8217;</li>
 &#8216;text&#8217; encoding. Defaults to &#8216;NULL&#8217;</li>
 <li><strong>encoding</strong> (<em>str</em>) &#8211; The encoding format in which to export the data.
 Defaults to &#8216;text&#8217;.  Possible values are &#8216;text&#8217; - delimited text 
-output, &#8216;json&#8217; - to output each row as a JSON object, and &#8216;archive&#8217; to 
-output in giraffez archive format</li>
+output, &#8216;dict&#8217; - to output each row as a <cite>dict</cite> object mapping column names
+to values, &#8216;json&#8217; - to output each row as a JSON encoded string, and 
+&#8216;archive&#8217; to output in giraffez archive format</li>
 <li><strong>log_level</strong> (<em>int</em>) &#8211; Specify the desired level of output from the job.
 Possible values are <cite>giraffez.SILENCE</cite>, <cite>giraffez.INFO</cite> (default),
 <cite>giraffez.VERBOSE</cite>, and <cite>giraffez.DEBUG</cite></li>
@@ -1839,15 +1878,6 @@ script before the snippet being run.</p>
             <span class="n">f</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s2">&quot;{0}</span><span class="se">\n</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">row</span><span class="p">))</span>
 </pre></div>
 </div>
-<p>Export data directly into pandas:</p>
-<div class="highlight-python"><div class="highlight"><pre><span></span><span class="k">with</span> <span class="n">giraffez</span><span class="o">.</span><span class="n">Export</span><span class="p">()</span> <span class="k">as</span> <span class="n">export</span><span class="p">:</span>
-    <span class="n">export</span><span class="o">.</span><span class="n">encoding</span> <span class="o">=</span> <span class="s2">&quot;dict&quot;</span>
-    <span class="n">export</span><span class="o">.</span><span class="n">query</span> <span class="o">=</span> <span class="s2">&quot;select infokey, character_length(infodata) from dbc.dbcinfo&quot;</span>
-    <span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">export</span><span class="o">.</span><span class="n">results</span><span class="p">())</span>
-    <span class="k">print</span><span class="p">(</span><span class="n">df</span><span class="p">)</span>
-    <span class="k">print</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">mean</span><span class="p">())</span>
-</pre></div>
-</div>
 </div>
 <div class="section" id="cmd">
 <h3>Cmd<a class="headerlink" href="#cmd" title="Permalink to this headline">¶</a></h3>
@@ -2122,7 +2152,7 @@ are not allowed among others when using this method.</strong></p>
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'./',
-            VERSION:'1.0.0',
+            VERSION:'1.0.4',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
             HAS_SOURCE:  true
