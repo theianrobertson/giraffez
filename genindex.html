@@ -9,7 +9,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Index &mdash; giraffez 1.0.4 documentation</title>
+  <title>Index &mdash; giraffez 1.0.5 documentation</title>
   
 
   
@@ -31,7 +31,7 @@
   
 
   
-    <link rel="top" title="giraffez 1.0.4 documentation" href="index.html"/> 
+    <link rel="top" title="giraffez 1.0.5 documentation" href="index.html"/> 
 
   
   <script src="_static/js/modernizr.min.js"></script>
@@ -59,7 +59,7 @@
             
             
               <div class="version">
-                1.0.4
+                1.0.5
               </div>
             
           
@@ -82,8 +82,10 @@
             
                 <ul>
 <li class="toctree-l1"><a class="reference internal" href="intro.html">Introduction</a></li>
-<li class="toctree-l1"><a class="reference internal" href="command-line.html">Command Line</a></li>
-<li class="toctree-l1"><a class="reference internal" href="api.html">Python API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="command-line.html">Commands</a></li>
+<li class="toctree-l1"><a class="reference internal" href="quickstart.html">Quickstart</a></li>
+<li class="toctree-l1"><a class="reference internal" href="usage.html">Advanced Usage</a></li>
+<li class="toctree-l1"><a class="reference internal" href="api.html">API Reference</a></li>
 <li class="toctree-l1"><a class="reference internal" href="FAQ.html">FAQ</a></li>
 <li class="toctree-l1"><a class="reference external" href="http://github.com/capitalone/giraffez">GitHub</a></li>
 </ul>
@@ -257,6 +259,10 @@
   <dt><a href="api.html#giraffez.cmd.TeradataCmd.count_table">count_table() (giraffez.cmd.TeradataCmd method)</a>
   </dt>
 
+      
+  <dt><a href="api.html#giraffez.encrypt.create_key_file">create_key_file() (in module giraffez.encrypt)</a>
+  </dt>
+
   </dl></td>
 </tr></table>
 
@@ -342,9 +348,15 @@
   </dt>
 
       
-  <dt><a href="api.html#giraffez.types.Columns.get">get() (giraffez.types.Columns method)</a>
+  <dt><a href="api.html#giraffez.secret.Secret.get">get() (giraffez.secret.Secret method)</a>
   </dt>
 
+      <dd><dl>
+        
+  <dt><a href="api.html#giraffez.types.Columns.get">(giraffez.types.Columns method)</a>
+  </dt>
+
+      </dl></dd>
       
   <dt><a href="api.html#giraffez.cmd.TeradataCmd.get_columns">get_columns() (giraffez.cmd.TeradataCmd method)</a>
   </dt>
@@ -381,12 +393,12 @@
   <dt><a href="api.html#giraffez.types.GiraffeTimestamp">GiraffeTimestamp (class in giraffez.types)</a>
   </dt>
 
-  </dl></td>
-  <td style="width: 33%" valign="top"><dl>
       
   <dt><a href="api.html#giraffez.errors.GiraffeTypeError">GiraffeTypeError</a>
   </dt>
 
+  </dl></td>
+  <td style="width: 33%" valign="top"><dl>
       
   <dt><a href="index.html#module-giraffez">giraffez (module)</a>
   </dt>
@@ -404,6 +416,10 @@
   </dt>
 
       
+  <dt><a href="api.html#module-giraffez.encrypt">giraffez.encrypt (module)</a>
+  </dt>
+
+      
   <dt><a href="api.html#module-giraffez.errors">giraffez.errors (module)</a>
   </dt>
 
@@ -417,6 +433,10 @@
 
       
   <dt><a href="api.html#module-giraffez.mload">giraffez.mload (module)</a>
+  </dt>
+
+      
+  <dt><a href="api.html#module-giraffez.secret">giraffez.secret (module)</a>
   </dt>
 
       
@@ -451,6 +471,10 @@
   <td style="width: 33%" valign="top"><dl>
       
   <dt><a href="api.html#giraffez.errors.InvalidCredentialsError">InvalidCredentialsError</a>
+  </dt>
+
+      
+  <dt><a href="api.html#giraffez.types.Result.items">items() (giraffez.types.Result method)</a>
   </dt>
 
   </dl></td>
@@ -598,15 +622,23 @@
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%" valign="top"><dl>
       
+  <dt><a href="api.html#giraffez.secret.Secret">Secret (class in giraffez.secret)</a>
+  </dt>
+
+      
   <dt><a href="api.html#giraffez.types.Columns.serialize">serialize() (giraffez.types.Columns method)</a>
   </dt>
 
       
-  <dt><a href="api.html#giraffez.types.Columns.set_filter">set_filter() (giraffez.types.Columns method)</a>
+  <dt><a href="api.html#giraffez.secret.Secret.set">set() (giraffez.secret.Secret method)</a>
   </dt>
 
   </dl></td>
   <td style="width: 33%" valign="top"><dl>
+      
+  <dt><a href="api.html#giraffez.types.Columns.set_filter">set_filter() (giraffez.types.Columns method)</a>
+  </dt>
+
       
   <dt><a href="api.html#giraffez.config.Config.set_value">set_value() (giraffez.config.Config method)</a>
   </dt>
@@ -623,6 +655,14 @@
 
       
   <dt><a href="api.html#giraffez.mload.TeradataMLoad.tables">tables (giraffez.mload.TeradataMLoad attribute)</a>
+  </dt>
+
+      
+  <dt><a href="FAQ.html#term-teradata-call-level-interface-version-2-cliv2"><strong>Teradata Call-Level Interface Version 2 (CLIv2)</strong></a>
+  </dt>
+
+      
+  <dt><a href="FAQ.html#term-teradata-parallel-transporter-api-tpt-api"><strong>Teradata Parallel Transporter API (TPT API)</strong></a>
   </dt>
 
       
@@ -647,6 +687,20 @@
   <dt><a href="api.html#giraffez.mload.TeradataMLoad">TeradataMLoad (class in giraffez.mload)</a>
   </dt>
 
+      
+  <dt><a href="api.html#giraffez.types.Row.to_dict">to_dict() (giraffez.types.Row method)</a>
+  </dt>
+
+      
+  <dt><a href="api.html#giraffez.types.Result.to_json">to_json() (giraffez.types.Result method)</a>
+  </dt>
+
+      <dd><dl>
+        
+  <dt><a href="api.html#giraffez.types.Row.to_json">(giraffez.types.Row method)</a>
+  </dt>
+
+      </dl></dd>
       
   <dt><a href="api.html#giraffez.mload.TeradataMLoad.total_count">total_count (giraffez.mload.TeradataMLoad attribute)</a>
   </dt>
@@ -731,7 +785,7 @@
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'./',
-            VERSION:'1.0.4',
+            VERSION:'1.0.5',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
             HAS_SOURCE:  true
