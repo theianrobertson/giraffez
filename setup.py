@@ -90,11 +90,11 @@ def get_teradata_version(search_directory):
             if re.search("\d+\.\d+", d):
                 directories.append(d)
         if not directories:
-            return None
+            return ''
         return os.path.join(search_directory, max(directories))
     except FileNotFoundError:
         sys.stderr.write("Teradata FileNotFound.")
-        return None
+        return ''
 
 def get_version():
     version_regex = re.compile(r'^__version__\s*=\s*[\'"]([^\'"]*)[\'"]', re.MULTILINE)
