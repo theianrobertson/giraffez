@@ -13,6 +13,7 @@ from distutils.errors import CCompilerError, DistutilsExecError, DistutilsPlatfo
 
 WIN = sys.platform.startswith('win')
 PY3 = sys.version_info[0] == 3
+logger = logging.getLogger(__name__)
 
 if not PY3:
     FileNotFoundError = (IOError, OSError)
@@ -28,11 +29,11 @@ class PlatformNotSupported(GiraffeBuildError):
     Raised when the installation platform is unsupported or unknown.
     """
 
-class TeradataNotFound(GiraffeBuildError):
-    """
-    Raised when unable to automatically find either Teradata CLIv2 or
-    Teradata PT API files.
-    """
+#class TeradataNotFound(GiraffeBuildError):
+#    """
+#    Raised when unable to automatically find either Teradata CLIv2 or
+#    Teradata PT API files.
+#    """
 
 
 def fix_compile(remove_flags):
@@ -209,7 +210,9 @@ class CLIExtension(Extension):
 
     def setup(self):
         if TERADATA_HOME is None:
-            raise TeradataNotFound("Unable to find the Teradata files.")
+            logger.warning('Your install may not work properly - Unable to '
+                'find the Teradata files.')
+            #raise TeradataNotFound("Unable to find the Teradata files.")
 
         if platform.system() == 'Windows':
             if is_64bit():
@@ -241,7 +244,9 @@ class CLIExtension(Extension):
             self.cli_library_dir = tdcli_lib
 
         if not self.cli_include_dir or not self.cli_library_dir:
-            raise TeradataNotFound("Cannot find the Teradata CLIv2 files.")
+            #raise TeradataNotFound("Cannot find the Teradata CLIv2 files.")
+            logger.warning('Your installation may not be complete - cannot '
+                'find the Teradata CLIv2 files.')
 
         self.include_dirs.append(self.cli_include_dir)
         self.library_dirs.append(self.cli_library_dir)
@@ -279,7 +284,9 @@ class TPTExtension(Extension):
 
     def setup(self):
         if TERADATA_HOME is None:
-            raise TeradataNotFound("Unable to find the Teradata files.")
+            #raise TeradataNotFound("Unable to find the Teradata files.")
+            logger.warning('Your install may not work properly - Unable to '
+                'find the Teradata files.')
 
         if platform.system() == 'Windows':
             if is_64bit():
@@ -313,7 +320,9 @@ class TPTExtension(Extension):
             self.tpt_library_dir = tptapi_lib
 
         if not self.tpt_include_dir or not self.tpt_library_dir:
-            raise TeradataNotFound("Cannot find the Teradata Parallel Transporter API files.")
+            logger.warning('Your installation may not be complete - cannot '
+                'find the Teradata Parallel Transporter API files.')
+            #raise TeradataNotFound("Cannot find the Teradata Parallel Transporter API files.")
 
         self.include_dirs.append(self.tpt_include_dir)
         self.library_dirs.append(self.tpt_library_dir)
